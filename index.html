@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Diary Petualangan Panca Cinta - KbC Kemenag RI</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Baloo+2:wght@600;700;800&family=Amiri&display=swap" rel="stylesheet">
+<style>
+:root{--g:#0e9a4f;--gd:#165c4f;--o:#f58220;--m:#d6f0d6;--cr:#fffaf0;--tx:#1f2d27;--bd:#cfe3d4}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Quicksand',system-ui,sans-serif;color:var(--tx);background:var(--cr)}
+h1,h2,h3,h4,.tag,.logo b{font-family:'Baloo 2','Quicksand',sans-serif}
+.arabic{font-family:'Amiri',serif;font-size:22px;line-height:2.2;text-align:right;direction:rtl;color:var(--gd);background:#f0f7f2;padding:12px;border-radius:12px;border-right:4px solid var(--g);margin:10px 0}
+header{position:sticky;top:0;z-index:99;background:var(--gd);color:#fff;display:flex;align-items:center;gap:12px;padding:8px 16px;box-shadow:0 2px 10px #0002}
+.logo{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:18px}.logo b{letter-spacing:.5px}
+header .sp{flex:1}
+header button{background:#ffffff22;color:#fff;border:0;border-radius:20px;padding:6px 14px;font:700 13px Quicksand;cursor:pointer;transition:.2s}
+header button:hover{background:#ffffff44}
+#qb{background:var(--o)!important;display:none;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.wrap{display:flex;min-height:calc(100vh - 52px)}
+nav{width:260px;background:var(--m);padding:14px 10px;flex-shrink:0;position:sticky;top:52px;align-self:flex-start;height:calc(100vh - 52px);overflow:auto}
+nav a{display:flex;align-items:center;gap:8px;padding:9px 10px;margin-bottom:6px;border-radius:12px;color:var(--gd);font-weight:700;font-size:13.5px;text-decoration:none;background:#ffffffaa;border-left:6px solid var(--c,var(--g));transition:.2s}
+nav a:hover,nav a.on{background:#fff;box-shadow:0 2px 8px #0002;transform:translateX(2px)}
+nav a i{margin-left:auto;font-style:normal;font-size:12px;opacity:.85;background:#ffffffdd;padding:2px 6px;border-radius:10px}
+main{flex:1;min-width:0;padding:0 0 60px}
+.in{max-width:920px;margin:0 auto;padding:18px}
+.ban{background:var(--m);position:relative;overflow:hidden;padding:34px 22px 70px;text-align:center;border-bottom:3px solid var(--bd)}
+.ban h2{font-size:32px;margin:6px 0;color:var(--gd);text-transform:uppercase;line-height:1.1}.ban small{font-weight:700;color:#3a7a54;letter-spacing:2px}
+.ban svg{position:absolute;bottom:0;left:0;width:100%;height:60px}.big{font-size:56px}
+.card{background:#fff;border:2px solid var(--bd);border-radius:20px;padding:18px 20px;margin:16px 0;box-shadow:0 4px 0 var(--bd)}
+.card.D{background:#fff8ee;border-color:#f7c48a;box-shadow:0 4px 0 #f7c48a}
+.tag{display:inline-block;background:var(--g);color:#fff;border-radius:20px;padding:2px 14px;font-size:12px;font-weight:700;letter-spacing:1px}.D .tag,.P .tag{background:var(--o)}.R .tag{background:#2a8fc9}
+.card h3{margin:8px 0;color:var(--gd);font-size:21px;line-height:1.3}
+.ins{margin:6px 0 12px;line-height:1.6;white-space:pre-line;color:#2c3e35}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 4px;color:var(--gd)}
+textarea,input,select{width:100%;font:500 15px Quicksand;border:2px solid var(--bd);border-radius:12px;padding:10px 12px;background:#fffffa;color:var(--tx);transition:.2s}
+textarea{resize:vertical;background-image:repeating-linear-gradient(transparent 0 25px,#d9e8dc 25px 26px);line-height:26px}
+textarea:focus,input:focus,select:focus{outline:0;border-color:var(--g);background:#fff;box-shadow:0 0 0 3px #0e9a4f22}
+.ck{display:flex;gap:8px;align-items:flex-start;font-weight:600;margin:7px 0;cursor:pointer}.ck input{width:auto;margin-top:4px;cursor:pointer}
+.gr{display:flex;gap:8px;align-items:center;margin:8px 0;background:#f9fdfa;padding:8px 12px;border-radius:10px;border:1px solid #e1efe4}
+.gr span{flex:1;font-size:13.5px;font-weight:700;color:var(--gd)}
+.gr select{flex:0 0 130px}.gr input{flex:1}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
+.pair h5{margin:0;background:#718096;color:#fff;padding:8px 12px;border-radius:10px 10px 0 0;font:800 14px 'Baloo 2'}
+.pair .kb h5{background:var(--g)}
+.pair small{display:block;font-size:12.5px;line-height:1.45;padding:8px 10px;background:#f0f4f1;min-height:70px;border-bottom:1px solid #ddd}
+.act{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+.sv{font-size:12.5px;font-weight:700;color:#4a5568}
+.btn{background:var(--o);color:#fff;border:0;border-radius:24px;padding:10px 22px;font:700 14px Quicksand;cursor:pointer;box-shadow:0 4px 0 #c4640f;transition:.1s}
+.btn:hover{filter:brightness(1.05)}.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #c4640f}
+.btn.g{background:var(--g);box-shadow:0 4px 0 #0a7039}
+.res{background:var(--m);border-radius:14px;padding:14px;margin-top:12px;font-weight:700;color:var(--gd);border:1px solid var(--bd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.kc{border-radius:18px;padding:16px;color:#fff;background:var(--c);cursor:pointer;text-decoration:none;box-shadow:0 5px 0 #0003;display:block;transition:.2s}
+.kc:hover{transform:translateY(-3px)}
+.kc h4{margin:6px 0;font-size:18px}.bar{height:10px;background:#fff5;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#fff;border-radius:6px;transition:.4s}
+.bar.d{background:#e3eee6}.bar.d i{background:var(--c,var(--g))}
+.row{display:flex;align-items:center;gap:10px;margin:10px 0}.row b{flex:0 0 200px;font-size:13.5px;color:var(--gd)}
+.row .bar{flex:1}.row em{width:45px;font-style:normal;font-weight:700;font-size:13px;text-align:right}
+.hero{background:linear-gradient(135deg,#e6f6e3,#d6f0d6);border-radius:24px;padding:26px;margin-top:8px;display:flex;gap:20px;align-items:center;border:2px solid var(--bd)}
+.hero svg{flex:0 0 120px}.mut{color:#5a6a60;font-size:13.5px}
+.nx{display:flex;justify-content:space-between;margin-top:28px}
+.rg{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--g) calc(var(--p)*1%),#dcebdf 0);font:800 18px 'Baloo 2'}
+.rg span{width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}td,th{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left}
+th{background:#f0f7f2;color:var(--gd);font-weight:700}
+/* Custom Modal Style */
+.modal-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.modal-overlay.active{opacity:1;pointer-events:auto}
+.modal-box{background:#fff;padding:24px;border-radius:20px;max-width:400px;width:90%;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.2);transform:scale(0.9);transition:transform .2s ease}
+.modal-overlay.active .modal-box{transform:scale(1)}
+.modal-box h4{margin:0 0 8px;color:var(--gd);font-size:20px}
+.modal-box p{margin:0 0 20px;color:#4a5568;font-size:14px;line-height:1.5}
+@media(max-width:768px){.wrap{display:block}nav{width:auto;height:auto;position:static;display:flex;overflow:auto;gap:6px;padding:8px}nav a{white-space:nowrap;margin:0;flex:0 0 auto}.pair{grid-template-columns:1fr}.gr{flex-wrap:wrap}.gr span{flex:1 0 100%}.hero{flex-direction:column;text-align:center}.row b{flex-basis:120px}.ban h2{font-size:24px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" onclick="location.hash=''">
+    <svg width="32" height="32" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#fff"/><path d="M20 33V19" stroke="#0e9a4f" stroke-width="3.5" stroke-linecap="round"/><path d="M20 21C20 13 13 10 8 11c0 7 5 11 12 10z" fill="#0e9a4f"/><path d="M20 18c0-6 6-9 11-8 0 6-5 10-11 8z" fill="#f58220"/></svg>
+    <b>Diary Petualangan Panca Cinta</b>
+  </div>
+  <span class="sp"></span>
+  <button id="qb" onclick="flush()"></button>
+</header>
+
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main id="main"></main>
+</div>
+
+<!-- Custom Dialog Modal -->
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal-box">
+    <h4 id="modalTitle">Pemberitahuan</h4>
+    <p id="modalMsg"></p>
+    <button class="btn g" onclick="closeModal()">Mengerti</button>
+  </div>
+</div>
+
+<script>
+const CONFIG_API = "https://script.google.com/macros/s/AKfycbx13_cdNLvjlpFJDz01BkVYFqa2famk6iBp-MaqYAEAuXIPi2Qv8EMwDZbo-PRzeuEE/exec";
+
+const API = CONFIG_API;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function showModal(msg, title = 'Pemberitahuan') {
+  $('#modalTitle').textContent = title;
+  $('#modalMsg').textContent = msg;
+  $('#modalOverlay').classList.add('active');
+}
+
+function closeModal() {
+  $('#modalOverlay').classList.remove('active');
+}
+
+const CH = [
+  { n: 'Pengantar & Orientasi', s: 'Discover · Dream · Design · Destiny', c: '#f58220', e: '🌱' },
+  { n: 'Cinta Allah dan Rasul-Nya', c: '#0e9a4f', e: '🍵' },
+  { n: 'Cinta Ilmu', c: '#2a8fc9', e: '📖' },
+  { n: 'Cinta Alam', c: '#5fa83a', e: '🌿' },
+  { n: 'Cinta Diri dan Sesama Manusia', c: '#d94f86', e: '💞' },
+  { n: 'Cinta Tanah Air', c: '#e08a1e', e: '🏝️' }
+];
+
+const KIND = { D: 'DISCOVER / DIARY', A: 'AKTIVITAS', R: 'REFLEKSI', K: 'KONSEP & TAFAKKUR', P: 'APLIKASI & TANTANGAN' };
+const ICO = { D: '🧭', A: '🌱', R: '❓', K: '🔑', P: '✅' };
+
+const S = [];
+const add = (ch, k, t, p, f, ar) => S.push({ id: `c${ch}s${S.filter(x => x.ch === ch).length + 1}`, ch, k, t, p, f, ar });
+
+const T = (k, l, r = 4) => ({ k, l, t: 't', r });
+const I = (k, l) => ({ k, l, t: 'i' });
+const SEL = (k, l, o) => ({ k, l, t: 's', o });
+const CK = (k, l, o) => ({ k, l, t: 'c', o });
+const G = (k, l, rows, o, ph) => ({ k, l, t: 'g', rows, o, ph });
+const P = (k, a, ha, b, hb) => ({ k, t: 'p', a, ha, b, hb });
+
+const RF = (ch, t, qs, p) => add(ch, 'R', t, p, qs.map((q, i) => T('q' + i, (i + 1) + '. ' + q)));
+const MP = (ch, t, a, ha, b, hb) => add(ch, 'K', t, 'Tulis, baca, maknai dan diskusikan. Catat pemahaman Anda pada kedua kolom.', [P('m', 'Mindset Umum — ' + a, ha, 'Mindset KbC — ' + b, hb)]);
+
+const AD = ['Tikar','Gunting','Cermin','Kemah','Tabung panah','Busur panah','Perisai','Baju perang berlapis tembaga','Tembok / benteng pertahanan','Tongkat','Pelana kuda','Gelas','Mangkok','Pedang yang sering dipakai berperang'];
+
+const BIBIT_BULLY = [
+  {n:'1. Name-Calling',d:'Memanggil dengan julukan, ejekan, nama orang tua, atau panggilan yang tidak disukai.'},
+  {n:'2. Mocking',d:'Menirukan perkataan atau sikap orang lain dengan tujuan mengolok-olok.'},
+  {n:'3. Stereotyping',d:'Mengolok-olok & membicarakan hal negatif tentang identitas (suku, agama, status ekonomi, gender).'},
+  {n:'4. Body Shaming',d:'Mengomentari dengan tujuan mempermalukan bentuk tubuh atau kekurangan fisik.'},
+  {n:'5. Teasing',d:'Mempermalukan di hadapan umum atau menyoraki karena kesalahan/kekurangan.'},
+  {n:'6. Scapegoating',d:'Menyalahkan atau mengkambinghitamkan orang lain yang tidak bersalah.'},
+  {n:'7. Bad Words',d:'Mengatakan kata-kata kotor, jorok, atau kasar.'},
+  {n:'8. Oppressing',d:'Merasa berkuasa, menindas, menyuruh-nyuruh teman.'},
+  {n:'9. Roasting',d:'Menjadikan kekurangan/kesalahan seseorang sebagai bahan candaan/jokes.'},
+  {n:'10. Discrimination',d:'Melarang orang yang berbeda/punya kekurangan untuk bergabung dalam kelompok/kegiatan.'},
+  {n:'11. Repression',d:'Menekan hingga orang lain takut menyatakan pendapat atau beraktivitas.'},
+  {n:'12. Expulsion',d:'Mengusir teman dari kelompok.'},
+  {n:'13. Alienation',d:'Mengasingkan teman dan membiarkan teman merasa sendiri tanpa memiliki teman.'},
+  {n:'14. Segregation',d:'Geng-gengan, hanya bergaul dengan kelompok itu-itu saja dan tidak mau berbaur.'},
+  {n:'15. Destruction',d:'Melakukan penyerangan fisik atau merusak barang.'},
+  {n:'16. Harassment',d:'Jail dan menyakiti, sehingga orang di sekitar merasa tidak aman & nyaman.'},
+  {n:'17. Defacement',d:'Membuat tulisan/grafiti untuk menghina atau menyakiti.'},
+  {n:'18. Satire',d:'Menyindir atau menyerang seseorang secara tidak langsung.'},
+  {n:'19. Trolling',d:'Mengatakan sesuatu/provokasi yang memancing perselisihan dan pertengkaran.'},
+  {n:'20. Gossip',d:'Membicarakan rumor yang belum jelas kebenarannya atau keburukan orang lain di belakang.'}
+];
+
+// ---- BAB 0: ORIENTASI
+add(0, 'D', 'Diary Ini Milik', 'Selamat bergabung di petualangan seru ini! Anda berperan menjadi seorang petani yang penuh cinta dan dedikasi. Anda diwarisi koleksi benih-benih langka yang menjadi harapan terakhir kehidupan. Rawatlah hingga tumbuh menjadi pohon yang baik (QS Ibrahim 24–26).', [
+  I('nama', 'Nama Pemilik Diary'),
+  I('nip','NIP/NIK'),
+  I('instansi', 'Sekolah / Madrasah / Pesantren / Instansi'),
+  SEL('peran', 'Peran Pendidik', ['Guru', 'Kepala Madrasah', 'Pengawas','Pengasuh Pesantren', 'Fasilitator', 'Lainnya'])
+]);
+
+add(0, 'D', 'Eksplorasi Ajaran Cinta dalam Islam', 'Benih ini ibarat cinta yang menjadi esensi dari agama. Tuliskan apa saja ajaran Islam yang Anda ketahui yang mengandung pesan-pesan cinta.', [
+  CK('ck', 'Centang ajaran cinta yang sudah Anda kenali:', [
+    'Allah Ar-Rahman Ar-Rahim',
+    'Rasulullah diutus sebagai rahmat bagi semesta alam',
+    'Kasih sayang kepada sesama makhluk',
+    'Akhlak mulia & menebar salam',
+    'Memaafkan dan berlapang dada',
+    'Menyayangi anak yatim, kaum lemah, hewan & tumbuhan'
+  ]),
+  T('t', 'Tuliskan ajaran Islam lain yang mengandung pesan cinta', 5)
+]);
+
+add(0, 'D', 'Ancaman dan Tantangan: Defisit Cinta', 'Tuliskan apa saja tantangan dan masalah yang terjadi saat ini di dunia dan pendidikan yang merupakan dampak dari defisit cinta.', [
+  T('t', 'Tantangan & masalah nyata akibat defisit cinta', 6)
+]);
+
+add(0, 'D', 'Formula Panca Cinta sebagai Jawaban', 'Bagaimana formula Panca Cinta bisa menjadi jawaban bagi kondisi dunia yang tengah defisit cinta ini? Apa yang bisa Anda lakukan?', [
+  T('a', 'Panca Cinta sebagai jawaban kondisi zaman', 5),
+  T('b', 'Aksi nyata yang akan saya lakukan sebagai Petani Cinta', 5)
+]);
+
+// ---- BAB 1: CINTA ALLAH DAN RASUL-NYA
+add(1, 'A', 'Merasakan Kehadiran Allah di Secangkir Teh', '1. Anda akan menerima secangkir teh hangat. Terima dengan senyuman, ucapkan terima kasih.\n2. Genggam di tangan, JANGAN DULU DIMINUM.\n3. Simak cerita perjalanan secangkir teh ini dengan penuh perhatian.', [
+  T('c', 'Catatan pengalaman dan kesan Anda saat memegang secangkir teh hangat', 3)
+]);
+
+RF(1, 'Refleksi Secangkir Teh', [
+  'Mengapa teh yang diminum tadi terasa istimewa? Apa yang membuatnya jadi istimewa dan bermakna?',
+  'Mengapa aktivitas sehari-hari yang kita lakukan terasa biasa-biasa saja, tidak istimewa?',
+  'Bagaimana agar dalam setiap aktivitas kita bisa menghadirkan Allah?'
+]);
+
+add(1, 'K', 'Tadabbur QS Al-Waqi’ah 63–73', 'Tulis, baca, maknai dan diskusikan QS Al-Waqi’ah 63–73. Siapa yang menumbuhkan benih yang kita tanam, menurunkan air yang kita minum, dan menyalakan api yang kita gunakan?', [
+  T('m', 'Makna dan perenungan ayat bagi hidup saya', 5)
+], `أَفَرَأَيْتُمْ مَا تَحْرُثُونَ (63) أَأَنْتُمْ تَزْرَعُونَهُ أَمْ نَحْنُ الزَّارِعُونَ (64) لَوْ نَشَاءُ لَجَعَلْنَاهُ حُطَامًا فَظَلْتُمْ تَفَكَّهُونَ (65) إِنَّا لَمُغْرَمُونَ (66) بَلْ نَحْنُ مَحْرُومُونَ (67) أَفَرَأَيْتُمُ الْمَاءَ الَّذِي تَشْرَبُونَ (68) أَأَنْتُمْ أَنْزَلْتُمُوهُ مِنَ الْمُزْنِ أَمْ نَحْنُ الْمُنْزِلُونَ (69) لَوْ نَشَاءُ جَعَلْنَاهُ أُجَاجًا فَلَوْلَا تَشْكُرُونَ (70) أَفَرَأَيْتُمُ النَّارَ الَّتِي تُورُونَ (71) أَأَنْتُمْ أَنْشَأْتُمْ شَجَرَتَهَا أَمْ نَحْنُ الْمُنْشِئُونَ (72) نَحْنُ جَعَلْنَاهَا تَذْكِرَةً وَمَتَاعًا لِلْمُقْوِينَ (73)`);
+
+MP(1, 'Allah Sang Mahacinta', 'JALALIYAH', 'Sisi Jalaliyah Allah lebih menonjol, sehingga Allah digambarkan terutama sebagai penghukum.', 'JAMALIYAH', 'Sisi Jamaliyah lebih menonjol; Allah digambarkan penuh cinta. "Rahmatii sabaqat ghadhabii" (Welas asih-Ku mendahului murka-Ku).');
+
+add(1, 'K', 'Hadits 100 Rahmat Allah', 'Renungkan hadits kasih sayang Allah berikut ini.', [
+  T('m', 'Catatan pemahaman dan rasa syukur atas 100 Rahmat Allah', 4)
+], `عَنْ أَبِي هُرَيْرَةَ عَنِ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: إِنَّ لِلَّهِ مِائَةَ رَحْمَةٍ أَنْزَلَ مِنْهَا رَحْمَةً وَاحِدَةً بَيْنَ الْجِنِّ وَالْإِنسِ وَالْبَهَائِمِ وَالْهَوَامِّ، فَبِهَا يَتَعَاطَفُونَ، وَبِهَا يَتَرَاحَمُونَ... وَأَخَّرَ اللَّهُ تِسْعًا وَتِسْعِينَ رَحْمَةً يَرْحَمُ بِهَا عِبَادَهُ يَوْمَ الْقِيَامَةِ`);
+
+MP(1, 'Nabi Sosok Penuh Cinta', 'PERANG', 'Peran politik dan pemimpin militer cukup menonjol. Episode perang mendominasi sirah Nabi.', 'DAMAI', 'Peran sipil, moral dan spiritual lebih dominan. Dari 23 tahun misi kenabian, kurang dari 10% peran militer.');
+MP(1, 'Al-Qur’an Kitab Cinta', 'NOMOS ORIENTED', 'Islam sering dipandang secara Nomos Oriented: fokus pada aspek hukum atau syariat semata.', 'EROS ORIENTED', 'Ayat hukum kurang dari 30%. Al-Qur’an didominasi pesan moral melalui kisah; 13 tahun periode Mekah fokus pada tauhid & cinta.');
+
+add(1, 'P', 'Cek Mode Ibadah Kita', 'Ayo cek, berada pada mode mana kita saat ibadah kepada Allah? Budak (push: paksaan & ancaman neraka), Pedagang (pull: iming-iming pahala), atau Pecinta.', [
+  T('b', 'Ibadah Mode BUDAK — contoh nyata dalam pengalaman saya', 3),
+  T('d', 'Ibadah Mode PEDAGANG — contoh nyata dalam pengalaman saya', 3),
+  T('p', 'Ibadah Mode PECINTA — seperti apa wujudnya dalam keseharian saya?', 3)
+]);
+
+add(1, 'P', 'Challenge 1 Hari Copy-Paste Lifestyle Rasulullah', 'Cinta Allah? Teladani Rasulullah. Jalankan challenge 1 hari meniru gaya hidup Rasulullah Saw.', [
+  T('r', 'Rencana gaya hidup Rasulullah yang akan saya tiru', 4),
+  T('h', 'Pengalaman & dampak yang saya rasakan setelah menjalankannya', 4)
+]);
+
+add(1, 'P', 'Challenge Ibadah Mode Pecinta: 7 Tips', 'Centang tips yang berhasil Anda amalkan minggu ini.', [
+  CK('t', 'Tips Mode Pecinta:', [
+    '1. Kenali Allah lewat Asmaul Husna (Ar-Rahman, Al-Wadud)',
+    '2. Baca Al-Qur’an sebagai surat cinta, bukan sekadar kewajiban',
+    '3. Ubahlah narasi niat ibadah ("Aku rindu lebih dekat kepada-Mu")',
+    '4. Kenang kebaikan Allah dalam hidupmu',
+    '5. Shalat dengan kehadiran hati dan rasa rindu',
+    '6. Doa yang penuh cinta, bukan sekadar daftar belanja',
+    '7. Dekati orang yang cinta kepada Allah'
+  ]),
+  T('c', 'Catatan pengalaman dan perubahan suasana hati', 3)
+]);
+
+add(1, 'P', 'Asmaul Husna Pekan Ini', 'Pilih 1–2 nama Allah setiap pekan (misal Ar-Rahman, Al-Wadud). Renungkan bagaimana kasih sayang dan keindahan-Nya hadir dalam hidupmu.', [
+  I('n1', 'Nama Allah Pilihan 1'),
+  I('n2', 'Nama Allah Pilihan 2'),
+  T('r', 'Renungan kehadiran-Nya dalam hidup saya', 4)
+]);
+
+add(1, 'P', 'Jurnal Cinta Harian & Ayat yang Menyapa Hati', 'Tulis jurnal cinta dari Allah setiap hari. Sebelum membaca Al-Qur’an ucapkan: "Ya Allah, aku ingin memahami pesan cinta-Mu hari ini."', [
+  T('j', 'Jurnal cinta dari Allah hari ini', 4),
+  T('a', 'Ayat yang "menyapa hati" hari ini (Surah/Ayat & Pesannya)', 3)
+]);
+
+add(1, 'P', 'Jurnal 10 Nikmat Hari Ini', 'Setiap malam, tuliskan 10 nikmat hari ini. Sebut satu nikmat yang paling membuatmu merasa sangat dicintai.', [
+  G('n', '10 Nikmat Hari Ini', Array.from({length:10}, (_,i) => 'Nikmat ' + (i+1))),
+  I('top', 'Nikmat yang paling membuat saya merasa sangat dicintai')
+]);
+
+// ---- BAB 2: CINTA ILMU
+add(2, 'A', 'Membaca Kode Rahasia di Alam Semesta', 'Perhatikan berbagai fenomena dan benda di sekitar kita. Temukan pola dan kode rahasia di baliknya.', [
+  T('c', 'Pola atau kode rahasia yang berhasil saya temukan', 4)
+]);
+
+RF(2, 'Refleksi Buku Semesta Alam', [
+  'Jika alam semesta ini adalah sebuah buku, apa judul yang cocok?',
+  'Apa pesan utama Buku Semesta Alam ini?',
+  'Nabi Ibrahim dan para ilmuwan membaca alam dengan pertanyaan. Apa pertanyaan tajam Anda?'
+]);
+
+add(2, 'K', 'Tadabbur QS Fussilat 53', 'Baca, tulis, dan tadabburi makna ayat berikut.', [
+  T('m', 'Hasil tadabbur saya mengenai tanda-tanda kebesaran Allah', 4)
+], `سَنُرِيهِمْ إِيْتِنَا فِي الْآفَاقِ وَفِي أَنْفُسِهِمْ حَتَّى يَتَبَيَّنَ لَهُمْ أَنَّهُ الْحَقُّ أَوَلَمْ يَكْفِ بِرَبِّكَ أَنَّهُ عَلَى كُلِّ شَيْءٍ شَهِيدٌ`);
+
+MP(2, 'Ilmu adalah Cahaya (1)', 'EMPIRIS-MATERIALISTIK', 'Pengetahuan hanya berbasis pengalaman inderawi dan logika materi.', 'HOLISTIK INTEGRAL', 'Sumber pengetahuan bukan hanya indra dan akal, tetapi juga sumber-sumber spiritual (Spirit, Soul, Mind, Life, Matter).');
+MP(2, 'Ilmu adalah Cahaya (2)', 'PENGETAHUAN (KNOWLEDGE)', 'Diraih dengan penjelasan teks (bayani) serta penjelasan logis (burhani).', 'HIKMAH (WISDOM)', 'Selain bayani dan burhani, juga menggunakan metode Irfani yang intuitif melalui penyucian jiwa.');
+MP(2, 'Ilmu adalah Cahaya (3)', 'HUSHULI', 'Pengetahuan melalui perantara: panca indra, akal, atau konsep abstrak (hadir sebagai gambaran/konsep tentang objek).', 'HUDHURI', 'Pengetahuan langsung tanpa perantara dan tanpa pemisahan subjek–objek (hadirnya hakikat sesuatu pada diri).');
+
+add(2, 'P', 'Merancang Pembelajaran Berbasis Pengalaman (Experiential Learning)', 'Pilih satu topik dari Panca Cinta. Buat rencana pembelajaran dengan 4 langkah Experiential Learning (Concrete Experience, Reflective Observation, Abstract Conceptualization, Active Experimentation), terapkan di kelas, dan amati dampaknya.', [
+  I('tp', 'Topik Panca Cinta yang dipilih'),
+  T('ce', '1. Concrete Experience (pengalaman nyata/praktik)', 3),
+  T('ro', '2. Reflective Observation (mengamati & merefleksi)', 3),
+  T('ac', '3. Abstract Conceptualization (membangun konsep/teori)', 3),
+  T('ae', '4. Active Experimentation (mencoba/menerapkan)', 3),
+  T('hs', 'Hasil penerapan: efektivitas & dampak bagi peserta didik', 3)
+]);
+
+add(2, 'P', 'Merancang Pembelajaran Berbasis Masalah (PBL - FIDS)', 'Pilih satu masalah di sekitar Anda. Rencanakan dengan empat langkah: Feel, Imagine, Do, Share. Buat share day untuk berbagi inspirasi.', [
+  I('ms', 'Masalah di sekitar yang dipilih'),
+  T('f', 'FEEL — merasakan masalah (empati & kepedulian)', 3),
+  T('i', 'IMAGINE — membayangkan solusi kreatif', 3),
+  T('d', 'DO — aksi / proyek nyata', 3),
+  T('s', 'SHARE — rencana share day untuk berbagi inspirasi', 3)
+]);
+
+add(2, 'P', 'Festival Bertanya (Parking Lot)', '“Ilmu itu seperti lemari terkunci. Kuncinya adalah pertanyaan.” Catat pertanyaan tajam yang belum terjawab dan perlu ditanyakan kepada pakar/otoritas.', [
+  G('pl', 'Parking Lot Pertanyaan Tajam', Array.from({length:8}, (_,i) => 'Pertanyaan ' + (i+1)), ['Belum terjawab', 'Sudah terjawab'], 'Tulis pertanyaan tajam Anda...')
+]);
+
+// ---- BAB 3: CINTA ALAM
+add(3, 'A', '54321 — Mindful Walking', 'Melakukan mindful walking tanpa alas kaki. Perhatikan: 5 objek di alam, 4 suara yang didengar, 3 objek yang diraba, 2 aroma yang dihirup, 1 rasa yang dicecap.', [
+  G('s', 'Catatan Pengindraan Mindful Walking', ['5 hal yang dilihat', '4 suara yang didengar', '3 benda yang diraba', '2 aroma yang dihirup', '1 rasa yang dicecap'])
+]);
+
+RF(3, 'Refleksi Sensasi Pengindraan', [
+  'Sensasi apa yang dirasakan saat kita mengaktifkan semua indera kita?',
+  'Dalam keseharian, sejauh mana kita betul-betul hadir dan mengaktifkan radar menangkap kehadiran Allah di sekitar kita? Bagaimana dampaknya?',
+  'Perbedaan apa yang akan kita rasakan jika kita hadir penuh dan mengaktifkan radar indera kita?'
+]);
+
+add(3, 'K', 'Tadabbur Wajah Allah di Alam', 'Ke mana pun menghadap, di situlah Wajah Allah (QS Al-Baqarah 115).', [
+  T('m', 'Makna dan kedalaman rasa kehadiran Allah di alam', 4)
+], `وَلِلَّهِ الْمَشْرِقُ وَالْمَغْرِبُ فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ إِنَّ اللَّهَ وَاسِعٌ عَلِيمٌ`);
+
+MP(3, 'Semua Makhluk Bertasbih', 'BENDA MATI', 'Fisika Newtonian mengajarkan ada benda hidup dan benda mati, sehingga memperlakukan benda tanpa empati.', 'SEMUA BENDA HIDUP', 'Semua makhluk Allah bertasbih. Dalam fisika kuantum, semua benda mengandung energi yang hidup dan dinamis.');
+
+add(3, 'K', 'Warning: Manusia Lebih Rendah dari Binatang', 'Refleksi QS Al-A’raf 179 tentang ketidak-hadiran hati dan indra.', [
+  T('m', 'Renungan agar tidak lalai (ghafilun)', 4)
+], `وَلَقَدْ ذَرَأْنَا لِجَهَنَّمَ كَثِيرًا مِنَ الْجِنِّ وَالْإِنسِ لَهُمْ قُلُوبٌ لَا يَفْقَهُونَ بِهَا وَلَهُمْ أَعْيُنٌ لَا يُبْصِرُونَ بِهَا وَلَهُمْ آذَانٌ لَا يَسْمَعُونَ بِهَا أُولَئِكَ كَالْأَنْعَامِ بَلْ هُمْ أَضَلُّ أُولَئِكَ هُمُ الْغَافِلُونَ`);
+
+add(3, 'K', 'Welas Asih Rasulullah pada Benda', 'Mengapa Rasulullah memberi nama pada benda dan hewannya? Lengkapi nama-nama benda Rasulullah berikut (cari tahu, lalu tulis).', [
+  T('why', 'Mengapa Rasulullah memberi nama khusus pada benda & hewannya?', 3),
+  G('nm', 'Inventarisasi Nama Benda Rasulullah', AD.map(x => 'Nama ' + x.toLowerCase()), null, 'Tulis nama bendanya...')
+]);
+
+MP(3, 'Ekoteologi', 'EGO — ANTROPOSENTRIS', 'Manusia sebagai pusat alam semesta; alam menjadi objek eksploitasi.', 'ECO — EKOTEOLOGI', 'Alam bukan objek tetapi manifestasi Allah. Manusia bagian kecil dari alam yang diberi tugas khalifah menjaga kelestariannya.');
+
+add(3, 'K', 'Conscious Consumption, Tabdzir dan Isrof', 'Kesadaran mengonsumsi barang secara bijak agar tidak jatuh pada perilaku mubazir dan israf.', [
+  T('c', 'Catatan & renungan saya tentang konsumsi sadar (conscious consumption)', 5)
+]);
+
+add(3, 'P', 'Muhasabah Jejak Karbon', 'Di aplikasi Gojek: GoGreener → Carbon Offset → Offset my Carbon. Isi data motor, mobil, AC & elektronik.', [
+  { k: 'co', t: 'x' },
+  T('r', 'Refleksi & komitmen saya menjaga lingkungan', 3)
+]);
+
+add(3, 'P', 'Beres-beres dengan Jurus 5S', 'Lakukan beres-beres dengan 5S (Sort, Straighten, Shine, Standardize, Sustain). Terapkan "buang/donasikan tanpa ampun" untuk barang yang tidak lagi spark joy.', [
+  G('s5', 'Penerapan 5S', ['SORT (Seiri) — memilah', 'STRAIGHTEN (Seiton) — menata', 'SHINE (Seiso) — membersihkan', 'STANDARDIZE (Seiketsu) — membakukan', 'SUSTAIN (Shitsuke) — membiasakan'], ['Belum', 'Sedang', 'Sudah'], 'Catatan pelaksanaan'),
+  G('sj', 'Pemilahan Barang Spark Joy', ['Barang yang dibuang', 'Barang yang didonasikan', 'Barang yang disimpan (spark joy)'], null, 'Daftar barang...')
+]);
+
+// ---- BAB 4: CINTA DIRI DAN SESAMA MANUSIA
+add(4, 'A', 'Roller Coaster Emosi', 'Siapkan selembar kertas. Simak cerita 7 babak. Setiap babak, rasakan emosi yang muncul dan ekspresikan pada kertas (dielus saat senang, diremas saat marah, dsb).', [
+  G('e', 'Emosi Per Babak', Array.from({length:7}, (_,i) => 'Babak ' + (i+1)), ['😊 Senang', '😡 Marah', '😢 Sedih', '😨 Takut', '😐 Biasa'], 'Ekspresi pada kertas / catatan')
+]);
+
+RF(4, 'Refleksi Roller Coaster Emosi', [
+  'Mengapa emosi kita berubah begitu cepat?',
+  'Apa dampak dari perubahan emosi tersebut?',
+  'Bagaimana agar kita menjadi pengendali emosi, bukan sebaliknya?'
+]);
+
+add(4, 'K', 'Peta Emosi & Dinosaurus di Kepala', '“If you can name it, you can tame it.” Kenali dan beri nama emosi; pahami "dinosaurus di kepala kita" (reaksi otak primitif/amygdala).', [
+  T('p', 'Peta emosi saya (emosi yang sering muncul & pemicunya)', 4),
+  T('d', '“Dinosaurus” di kepala saya muncul ketika...', 3)
+]);
+
+add(4, 'K', 'Doa Sifat Hilm — Rumus PRO: P + R = O', 'Meneladani karakter hilm Rasulullah dengan rumus PRO: P (Peristiwa) + R (Respon) = O (Outcome/Hasil). Tuliskan doa agar diperindah dengan sifat hilm (penyabar & santun).', [
+  I('p', 'P = Peristiwa (Event)'),
+  I('r', 'R = Respon (Pilihan Kita)'),
+  I('o', 'O = Outcome (Hasil)'),
+  T('d', 'Doa saya agar diperindah dengan sifat Hilm (الحلم)', 4)
+]);
+
+MP(4, 'Self Compassion', 'SELF PITY & NARSISME', 'Mengasihani diri berlebihan (mental korban) atau membanggakan diri berlebihan.', 'SELF COMPASSION', 'Welas asih pada diri yang seimbang antara kind and firm (lembut tetapi tegas); terbangun empati dan resiliensi.');
+
+add(4, 'P', 'Merancang Kelas Bernuansa SEL (Social Emotional Learning)', 'Terapkan SEL di kelas dengan poster cuaca hati, wheel of choice, dan peta emosi kelas dari barang bekas.', [
+  T('pe', 'Rancangan peta emosi kelas (bahan, bentuk, penempatan)', 4),
+  T('ks', 'Kesepakatan / keyakinan kelas yang disepakati', 4)
+]);
+
+add(4, 'A', 'Simulasi 5 Tipe Koneksi', '10 peserta: 5 jadi guru, 5 jadi siswa. Guru membacakan kartu; murid mundur bila kata terasa negatif, maju bila positif.', [
+  T('c', 'Catatan dan dinamika pengalaman dalam simulasi', 3)
+]);
+
+RF(4, 'Refleksi Simulasi Tipe Koneksi', [
+  'Mengapa ada perbedaan reaksi murid terhadap kata guru? Apa yang menyebabkan maju atau mundur?',
+  'Bagaimana jenis koneksi/relasi kuasa antara guru dan murid pada simulasi tadi?',
+  'Sebagai pendidik, Anda termasuk tipe koneksi yang mana?'
+]);
+
+add(4, 'K', '5 Tipe Koneksi: Anda Termasuk Yang Mana?', 'Pelajari 5 tipe koneksi: Penghukum, Pembuat Merasa Bersalah, Teman, Pemantau, dan Mentor.', [
+  SEL('t', 'Tipe Koneksi Dominan Saya Saat Ini', ['Penghukum', 'Pembuat Merasa Bersalah', 'Teman', 'Pemantau', 'Mentor']),
+  T('r', 'Refleksi perubahan menuju tipe MENTOR', 4)
+]);
+
+MP(4, 'Komunikasi Welas Asih', 'VIOLENT COMMUNICATION', 'Bahasa defensif/offensif; memperlakukan lawan bicara sebagai objek.', 'COMPASSIONATE COMMUNICATION', 'Memahami bukan menghakimi, bahasa asertif; menerapkan prinsip lembut dan tegas.');
+
+add(4, 'K', 'Disiplin Positif: Hukuman vs Konsekuensi vs Restitusi', 'Hukuman fokus pada patuh. Konsekuensi fokus pada kesepakatan. Restitusi fokus pada keyakinan & pemecahan masalah.', [
+  T('c', 'Praktik disiplin saya saat ini & hal yang ingin saya ubah', 4)
+]);
+
+MP(4, 'Petani Bukan Tukang Kayu', 'TUKANG KAYU', 'Mengasumsikan murid/anak seperti kayu mati yang dipotong, digergaji, dan dibentuk sesuai kehendak.', 'PETANI', 'Murid sebagai benih yang sudah memiliki potensi internal; tugas guru/orang tua menanam dan merawat.');
+
+add(4, 'P', 'Praktik Segitiga Restitusi', 'Rencanakan praktik 3 tahapan Segitiga Restitusi pada kasus murid.', [
+  T('i', '1. Menstabilkan Identitas ("Setiap orang pasti pernah berbuat salah")', 3),
+  T('v', '2. Validasi Tindakan yang Salah ("Kamu tentu punya alasan melakukan itu")', 3),
+  T('k', '3. Menanyakan Keyakinan ("Keyakinan kelas apa yang telah kita sepakati?")', 3)
+]);
+
+add(4, 'A', 'Bermain Boardgame Semester Baru', 'Bermain boardgame dalam kelompok 5–6 orang untuk mengasah kepekaan anti-bullying.', [
+  T('c', 'Catatan permainan dan refleksi pembelajaran', 3)
+]);
+
+RF(4, 'Refleksi Anti-Bully (Happy Tanpa Bully)', [
+  'Sikap apa saja yang bisa merusak kebahagiaan orang lain?',
+  'Apa dampak dari sikap-sikap tersebut bagi korban dan lingkungan?',
+  'Mengapa dalam kehidupan sehari-hari budaya bully sulit dihilangkan?'
+]);
+
+add(4, 'K', 'Respons terhadap Mitos Bullying', 'Tolong bantu memberikan tanggapan mendidik atas pernyataan mitos berikut.', [
+  T('b', '“Bully itu wajar, namanya juga remaja.” (Bunda Juwi)', 3),
+  T('l', '“Dulu zaman saya, bully sudah ada, bahkan lebih parah!” (Mamahnya Loly)', 3),
+  T('g', '“Bully itu perlu biar mental kita menjadi kuat!” (Papahnya Gugun)', 3)
+]);
+
+add(4, 'K', '20 Bibit Bully & Anatomi Bully', 'Kenali dan hindari 20 bibit bully serta pahami anatomi kelompok bully (Bully team vs Bystanders vs Upstanders).', [
+  CK('ck', 'Bibit bully yang pernah saya amati di lingkungan:', BIBIT_BULLY.map(b => b.n)),
+  T('r', 'Rencana tindakan pencegahan di lingkungan saya', 4)
+]);
+
+add(4, 'P', 'Asesmen Sistem Anti-Bully (Kerangka 5R)', 'Asesmen sistem pencegahan dan penanganan bully di madrasah/pesantren menggunakan kerangka Resources, Roles, Relations, Rules, dan Results.', (() => {
+  const R = {
+    Resources: ['Pencegahan: Media sosialisasi, modul edukasi, sistem deteksi dini', 'Penanganan: Sarana pelaporan & SOP alur penanganan', 'Pasca: Media khusus perekam pembelajaran kasus sebelumnya'],
+    Roles: ['Pencegahan: Siswa champion/duta anti kekerasan & guru terlatih', 'Penanganan: Tim khusus terlatih yang menindaklanjuti laporan', 'Pasca: Tim khusus pendokumentasian'],
+    Relations: ['Pencegahan: Buddy system & kerja sama sekolah-orang tua', 'Penanganan: Kerja sama multipihak/tim ahli', 'Pasca: Pendampingan pemulihan korban & pelaku'],
+    Rules: ['Pencegahan: Safeguarding policy & zero tolerance', 'Penanganan: Kebijakan perlindungan jaminan keamanan', 'Pasca: Kebijakan penanganan pasca kasus'],
+    Results: ['Pencegahan: Asesmen rutin potensi kerentanan', 'Penanganan: Pencatatan proses penanganan rapi', 'Pasca: Pendokumentasian sebagai pembelajaran bersama']
+  };
+  return Object.entries(R).map(([k,v]) => G(k, 'Indikator ' + k, v, ['Sudah ada', 'Sebagian', 'Belum ada'], 'Bukti / Catatan'));
+})());
+
+add(4, 'A', 'Coreng Mukaku', 'Kelompok ganjil. Memilih jawaban atas pertanyaan pilihan fasilitator untuk merasakan dinamika perbedaan dan minoritas.', [
+  T('c', 'Catatan pengalaman saat berada di pihak mayoritas vs minoritas', 3)
+]);
+
+RF(4, 'Refleksi Coreng Mukaku (Perbedaan & Minoritas)', [
+  'Mengapa ada kekhawatir saat kita memilih dan berbeda?',
+  'Jika boleh mengubah aturan permainan tadi, bagaimana aturannya agar tidak ada yang khawatir dengan pilihannya?',
+  'Dalam kehidupan nyata, pernahkah Anda khawatir karena menjadi berbeda atau minoritas? Ceritakan.'
+]);
+
+MP(4, 'Beda is Not Bad', 'ME & OTHERS', 'Kutub terpisah; kelompok yang berbeda dianggap "The Others".', 'WE', 'Meyakini semua makhluk terhubung. Membunuh satu manusia sama dengan membunuh seluruh umat manusia.');
+
+add(4, 'P', 'Breaking Down The Walls', 'Tantangan untuk menghapus prasangka buruk dan siap mendengarkan kelompok yang berbeda.', [
+  T('c', 'Prasangka yang berhasil saya bongkar & aksi nyatanya', 4),
+  T('h', 'Pengalaman menjadi minoritas dan pelajaran berharga yang didapat', 4)
+]);
+
+// ---- BAB 5: CINTA TANAH AIR
+add(5, 'A', 'Menemukan Keindahan Allah dalam Tradisi', 'Berpartisipasi dalam seni/pagelaran musik; rasakan keindahan dan estetika tradisi.', [
+  T('c', 'Catatan pengalaman merasakan keindahan estetika seni & tradisi', 3)
+]);
+
+RF(5, 'Refleksi Seni, Budaya, dan Etika', [
+  'Mengapa bahasa suara atau rupa bisa menjadi medium merasakan keindahan Allah?',
+  'Bagaimana hubungan antara etika dan estetika?',
+  'Bagaimana keragaman budaya lokal mencerminkan keindahan Allah?'
+]);
+
+add(5, 'K', 'Rasulullah Mencintai Tanah Airnya', 'Renungkan kecintaan Rasulullah pada tanah air Makkah dan Madinah (HR Bukhari 6372, Muslim 1376).', [
+  T('m', 'Tanggapan dan wujud cinta tanah air saya', 3)
+], `اللَّهُمَّ حَبِّبْ إِلَيْنَا الْمَدِينَةَ كَمَا حَبَّبْتَ إِلَيْنَا مَكَّةَ أَوْ أَشَدَّ`);
+
+MP(5, 'Nasionalisme dan Humanisme', 'PRIMORDIALISME & FANATISME', 'Kecintaan berlebihan pada identitas suku/bangsa sehingga menafikan identitas lain.', 'NASIONALISME & HUMANISME', 'Mencintai tanah air dan setia pada bangsa/negara sebagai bentuk ibadah dan ketaatan kepada Allah.');
+
+add(5, 'K', 'Islam dan Budaya Lokal', 'Bagaimana Islam dan budaya lokal saling melengkapi secara harmonis di lingkungan Anda.', [
+  T('c', 'Catatan tentang harmonisasi Islam dan budaya lokal di sekitar saya', 5)
+]);
+
+add(5, 'P', 'Tantangan Kearifan Lokal', 'Temukan dan praktikkan satu bentuk kearifan lokal di lingkungan Anda.', [
+  I('k', 'Kearifan lokal yang dipilih'),
+  T('n', 'Nilai & maknanya (kaitan dengan Panca Cinta / Islam)', 3),
+  T('r', 'Rencana aksi mempraktikkannya (kapan, di mana, bersama siapa)', 4),
+  T('h', 'Hasil & refleksi pengalaman', 3)
+]);
+
+const ls = {
+  get: k => { try { return localStorage.getItem(k); } catch(e) { return null; } },
+  set: (k, v) => { try { localStorage.setItem(k, v); } catch(e) {} }
+};
+
+let st = JSON.parse(ls.get('kbc') || 'null') || {
+  pid: '',
+  a: {},
+  q: []
+};
+
+let tm;
+const save = () => { clearTimeout(tm); tm = setTimeout(() => ls.set('kbc', JSON.stringify(st)), 400); };
+const tr = x => (x || '').toString().trim();
+
+function sc(f, v) {
+  if (v == null) return 0;
+  switch (f.t) {
+    case 'c': return Array.isArray(v) && v.length ? 1 : 0;
+    case 'g': return f.rows.filter((_, i) => v[i] && (tr(v[i][0]) || tr(v[i][1]))).length / f.rows.length;
+    case 'p': return (tr(v.u) ? 0.5 : 0) + (tr(v.k) ? 0.5 : 0);
+    case 'x': return Object.values(v).some(n => +n > 0) ? 1 : 0;
+    default: return tr(v) ? 1 : 0;
+  }
+}
+
+const fp = s => s.f.reduce((a, f) => a + sc(f, st.a[s.id + '.' + f.k]), 0) / s.f.length;
+const pc = ch => {
+  const x = S.filter(s => s.ch === ch);
+  return x.length ? Math.round(100 * x.reduce((a, s) => a + fp(s), 0) / x.length) : 0;
+};
+const pAll = () => Math.round(100 * S.reduce((a, s) => a + fp(s), 0) / S.length);
+
+const prof = () => ({
+  nama: st.a['c0s1.nama'] || '',
+  nip: st.a['c0s1.nip'] || '',
+  instansi: st.a['c0s1.instansi'] || '',
+  peran: st.a['c0s1.peran'] || ''
+});
+
+const co2 = o => {
+  o = o || {};
+  const m = 30 * ((+o.motor || 0) * 0.1 + (+o.mobil || 0) * 0.2 + (+o.ac || 0) * 0.9 + (+o.elek || 0) * 0.13);
+  return { kg: m, tr: Math.ceil(m * 12 / 21) };
+};
+
+function str(f, v) {
+  if (v == null) return '';
+  switch (f.t) {
+    case 'c': return Array.isArray(v) ? v.join('; ') : String(v);
+    case 'g': return f.rows.map((r, i) => v[i] && (tr(v[i][0]) || tr(v[i][1])) ? r + ' → ' + [v[i][0], v[i][1]].filter(tr).join(' | ') : '').filter(Boolean).join('\n');
+    case 'p': return 'UMUM: ' + (v.u || '') + '\nKBC: ' + (v.k || '');
+    case 'x': return `Motor ${v.motor || 0} km/hr, Mobil ${v.mobil || 0} km/hr, AC ${v.ac || 0} jam/hr, Elek ${v.elek || 0} jam/hr → ±${co2(v).kg.toFixed(1)} kg CO2/bln, ${co2(v).tr} pohon/thn`;
+    default: return String(v);
+  }
+}
+
+function fld(s, f) {
+  const v = st.a[s.id + '.' + f.k];
+  const L = f.l ? `<label>${esc(f.l)}</label>` : '';
+  const opt = (o, x) => o.map(y => `<option${x === y ? ' selected' : ''}>${esc(y)}</option>`).join('');
+
+  switch (f.t) {
+    case 't':
+      return `<div>${L}<textarea data-k="${f.k}" rows="${f.r}">${esc(v)}</textarea></div>`;
+    case 'i':
+      return `<div>${L}<input data-k="${f.k}" value="${esc(v)}"></div>`;
+    case 's':
+      return `<div>${L}<select data-k="${f.k}"><option value="">— pilih —</option>${opt(f.o, v)}</select></div>`;
+    case 'c': {
+      const arr = Array.isArray(v) ? v : [];
+      return `<div>${L}${(f.o || []).map(o => `<label class="ck"><input type="checkbox" data-k="${f.k}" data-c="${esc(o)}"${arr.includes(o) ? ' checked' : ''}>${esc(o)}</label>`).join('')}</div>`;
+    }
+    case 'g':
+      return `<div>${L}${f.rows.map((r, i) => {
+        const x = (v && v[i]) || ['', ''];
+        return `<div class="gr"><span>${esc(r)}</span>${f.o ? `<select data-k="${f.k}" data-i="${i}" data-p="s"><option value="">—</option>${opt(f.o, x[0])}</select>` : ''}<input data-k="${f.k}" data-i="${i}" data-p="t" placeholder="${esc(f.ph || '')}" value="${esc(x[1])}"></div>`;
+      }).join('')}</div>`;
+    case 'p': {
+      const o = v || {};
+      return `<div class="pair"><div><h5>${esc(f.a)}</h5><small>${esc(f.ha)}</small><textarea data-k="${f.k}" data-f="u" rows="7">${esc(o.u)}</textarea></div><div class="kb"><h5>${esc(f.b)}</h5><small>${esc(f.hb)}</small><textarea data-k="${f.k}" data-f="k" rows="7">${esc(o.k)}</textarea></div></div>`;
+    }
+    case 'x': {
+      const o = v || {};
+      return `<div class="grid">${[['motor', 'Motor (km/hari)'], ['mobil', 'Mobil (km/hari)'], ['ac', 'AC (jam/hari)'], ['elek', 'Elektronik lain (jam/hari)']].map(([k, l]) => `<div><label>${l}</label><input type="number" min="0" step="any" data-k="${f.k}" data-f="${k}" value="${esc(o[k])}"></div>`).join('')}</div><div class="res" id="r-${s.id}"></div>`;
+    }
+  }
+}
+
+const secH = s => `
+  <article class="card ${s.k}" id="${s.id}">
+    <span class="tag">${ICO[s.k]} ${KIND[s.k]}</span>
+    <h3>${esc(s.t)}</h3>
+    ${s.ar ? `<div class="arabic">${esc(s.ar)}</div>` : ''}
+    ${s.p ? `<p class="ins">${esc(s.p)}</p>` : ''}
+    ${s.f.map(f => fld(s, f)).join('')}
+    <div class="act">
+      <span class="sv" id="sv-${s.id}"></span>
+      <button class="btn" onclick="sub('${s.id}')">☁️ Simpan &amp; Kirim</button>
+    </div>
+  </article>
+`;
+
+const HILL = '<svg viewBox="0 0 400 60" preserveAspectRatio="none"><path d="M0 30Q100 5 200 28T400 20V60H0z" fill="#8fd18f"/><path d="M0 45Q120 25 240 44T400 38V60H0z" fill="#6b4a2f"/></svg>';
+const SPR = c => `<svg viewBox="0 0 60 70" width="64"><path d="M30 68V30" stroke="#3b7a3b" stroke-width="4" stroke-linecap="round"/><path d="M30 34C30 18 16 14 6 16c0 14 10 20 24 18z" fill="${c}"/><path d="M30 28c0-12 12-17 23-15 0 12-10 19-23 15z" fill="#f58220"/></svg>`;
+
+function nav() {
+  $('#nav').innerHTML = [
+    '<a href="#" data-h=""><span>🏡</span>Beranda Utama</a>',
+    ...CH.map((c, i) => `<a href="#c${i}" data-h="c${i}" style="--c:${c.c}"><span>${c.e}</span>${i ? 'Panca Cinta #' + i + ': ' : ''}${esc(c.n)}<i data-pc="${i}">0%</i></a>`),
+    '<a href="#dash" data-h="dash"><span>📊</span>Dashboard Progres</a>'
+  ].join('');
+}
+
+function route() {
+  const h = location.hash.slice(1);
+  const m = $('#main');
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.h === h));
+  window.scrollTo(0, 0);
+
+  if (/^c[0-5]$/.test(h)) {
+    const i = +h[1], c = CH[i];
+    m.innerHTML = `
+      <div class="ban" style="background:${i ? 'var(--m)' : '#ffe9cc'}">
+        <small>${i ? 'PANCA CINTA #' + i : 'DISCOVER · DREAM · DESIGN · DESTINY'}</small>
+        <div class="big">${c.e}</div>
+        <h2>${esc(c.n)}</h2>
+        ${HILL}
+      </div>
+      <div class="in">
+        ${S.filter(s => s.ch === i).map(secH).join('')}
+        <div class="nx">
+          ${i > 0 ? `<a class="btn g" style="text-decoration:none" href="#c${i-1}">← Bab Sebelumnya</a>` : '<span></span>'}
+          <a class="btn" style="text-decoration:none" href="#${i < 5 ? 'c' + (i + 1) : 'dash'}">${i < 5 ? 'Bab Berikutnya →' : 'Lihat Dashboard →'}</a>
+        </div>
+      </div>
+    `;
+    S.filter(s => s.ch === i).forEach(s => { if (s.f.some(f => f.t === 'x')) upd(s.id); });
+  } else if (h === 'dash') {
+    dash();
+  } else {
+    home();
+  }
+  prg();
+}
+
+function home() {
+  $('#main').innerHTML = `
+    <div class="in">
+      <div class="hero">
+        ${SPR('#0e9a4f')}
+        <div>
+          <h2 style="margin:0;color:var(--gd)">Selamat Berpetualang, Petani Cinta!</h2>
+          <p class="ins">Anda diwarisi benih-benih langka yang hampir punah dan menjadi harapan terakhir kehidupan. Rawat dengan formula rahasia <b>Panca Cinta</b> agar tumbuh menjadi pohon yang akarnya kuat, cabangnya menjulang ke langit, dan berbuah setiap waktu (QS Ibrahim 24–26).</p>
+          <a class="btn" style="text-decoration:none;display:inline-block;margin-top:6px" href="#c0">Mulai Petualangan 🌱</a>
+        </div>
+      </div>
+      <h3 style="color:var(--gd);margin-top:24px">Kumpulkan Lima Ramuan Panca Cinta</h3>
+      <div class="grid">
+        ${CH.slice(1).map((c, i) => `
+          <a class="kc" href="#c${i+1}" style="--c:${c.c}">
+            <small>PANCA CINTA ${i+1}</small>
+            <h4>${c.e}${esc(c.n)}</h4>
+            <div class="bar"><i data-b="${i+1}"></i></div>
+          </a>
+        `).join('')}
+      </div>
+      <p class="mut" style="margin-top:18px">Jawaban tersimpan otomatis di browser Anda. Tekan <b>Simpan &amp; Kirim</b> pada tiap lembar untuk sinkronisasi ke cloud.</p>
+    </div>
+  `;
+}
+
+function dash() {
+  const p = prof();
+  const ch = CH.map((c, i) => `
+    <div class="row">
+      <b>${c.e} ${i ? '#' + i + ' ' : ''}${esc(c.n)}</b>
+      <div class="bar d" style="--c:${c.c}"><i data-b="${i}"></i></div>
+      <em data-pc="${i}">0%</em>
+    </div>
+  `).join('');
+
+  $('#main').innerHTML = `
+    <div class="ban">
+      <div class="big">📊</div>
+      <h2>Dashboard Perkembangan</h2>
+      ${HILL}
+    </div>
+    <div class="in">
+      <div class="card">
+        <div class="row">
+          <div class="rg" style="--p:${pAll()}"><span>${pAll()}%</span></div>
+          <div>
+            <h3 style="margin:0">${esc(p.nama || 'Peserta Petualang')}</h3>
+            <span class="mut">NIP/NIK: <code>${esc(p.nip || 'Belum diisi')}</code></span><br>
+            <span class="mut">${esc(p.instansi || 'Instansi belum diisi')} ${esc(p.peran ? '(' + p.peran + ')' : '')}</span>
+          </div>
+        </div>
+        ${ch}
+        <h4 style="margin-top:16px;color:var(--gd)">Kartu Ramuan Panca Cinta Terkumpul (≥80%)</h4>
+        <p style="font-size:24px;margin:6px 0">${CH.slice(1).map((c, i) => pc(i + 1) >= 80 ? c.e : '⬜').join(' ')}</p>
+      </div>
+      <div class="card">
+        <h3>Statistik Seluruh Peserta Program</h3>
+        <div id="gd" class="mut">Memuat data peserta...</div>
+      </div>
+    </div>
+  `;
+  gd();
+}
+
+async function fetchAPI(url, options = {}) {
+  try {
+    const res = await fetch(url, options);
+    return await res.json();
+  } catch(err) {
+    if (options.body && typeof options.body === 'string') {
+      const res = await fetch(url, { ...options, headers: { 'Content-Type': 'text/plain;charset=utf-8' } });
+      return await res.json();
+    }
+    throw err;
+  }
+}
+
+async function syncUserData(nip) {
+  if (!nip || !API) return;
+  try {
+    const res = await fetchAPI(`${API}${API.includes('?') ? '&' : '?'}act=load_user&nip=${encodeURIComponent(nip)}`);
+    if (res && res.ok && res.answers) {
+      st.pid = res.pid || nip;
+      st.a = { ...st.a, ...res.answers };
+      if (res.nama) st.a['c0s1.nama'] = res.nama;
+      if (res.pid) st.a['c0s1.nip'] = res.pid;
+      if (res.instansi) st.a['c0s1.instansi'] = res.instansi;
+      if (res.peran) st.a['c0s1.peran'] = res.peran;
+      save();
+      prg();
+    }
+  } catch(e) {}
+}
+
+async function gd() {
+  const e = $('#gd');
+  if (!e) return;
+  if (!API) {
+    e.innerHTML = '<i>Layanan API belum dikonfigurasi secara lengkap.</i>';
+    return;
+  }
+  try {
+    const d = await fetchAPI(API + (API.includes('?') ? '&' : '?') + 'act=dash');
+    if (!e) return;
+    e.innerHTML = `
+      <p>Total <b>${d.n}</b> peserta terdaftar · Rata-rata pencapaian <b>${d.avg}%</b></p>
+      ${d.ch.map((v, i) => `
+        <div class="row">
+          <b>${CH[i].e}${esc(CH[i].n)}</b>
+          <div class="bar d" style="--c:${CH[i].c}"><i style="width:${v}%"></i></div>
+          <em>${v}%</em>
+        </div>
+      `).join('')}
+      <h4 style="margin-top:16px;color:var(--gd)">Top 10 Peserta Paling Aktif</h4>
+      <table>
+        <thead><tr><th>#</th><th>Nama / NIP / Instansi</th><th>Progres</th></tr></thead>
+        <tbody>
+          ${d.top.map((t, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td><b>${esc(t.nama || '(Tanpa Nama)')}</b> <small class="mut">(${esc(t.nip || '-')})</small><br><small class="mut">${esc(t.instansi || '-')}</small></td>
+              <td><b>${t.total}%</b></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  } catch (x) {
+    e.textContent = 'Gagal memuat statistik global. Silahkan muat ulang...';
+  }
+}
+
+function prg() {
+  document.querySelectorAll('[data-pc]').forEach(e => e.textContent = pc(+e.dataset.pc) + '%');
+  document.querySelectorAll('[data-b]').forEach(e => e.style.width = pc(+e.dataset.b) + '%');
+  const q = $('#qb');
+  if (q) {
+    q.style.display = st.q.length ? 'inline-block' : 'none';
+    q.textContent = '⏳ ' + st.q.length + ' Antrean Kirim';
+  }
+}
+
+function upd(id) {
+  const s = S.find(x => x.id === id);
+  const r = $('#r-' + id);
+  if (r && s) {
+    const c = co2(st.a[id + '.co']);
+    r.innerHTML = `Estimasi Jejak Karbon Anda: <b>${c.kg.toFixed(1)} kg CO₂/bulan</b> · Wajib Adopsi ± <b>${c.tr} Pohon/Tahun</b> 🌳<br><small class="mut">Kalkulasi kasar; gunakan fitur GoGreener di Gojek untuk data resmi.</small>`;
+  }
+  prg();
+}
+
+document.addEventListener('input', onIn);
+document.addEventListener('change', onIn);
+
+function onIn(e) {
+  const t = e.target;
+  const k = t.dataset.k;
+  const a = t.closest('article');
+  if (!k || !a) return;
+
+  const id = a.id;
+  const key = id + '.' + k;
+  let v = st.a[key];
+
+  if (t.dataset.c !== undefined) {
+    v = Array.isArray(v) ? v : [];
+    v = t.checked ? [...new Set([...v, t.dataset.c])] : v.filter(x => x !== t.dataset.c);
+  } else if (t.dataset.i !== undefined) {
+    v = Array.isArray(v) ? v : [];
+    const i = +t.dataset.i;
+    v[i] = v[i] || ['', ''];
+    v[i][t.dataset.p === 's' ? 0 : 1] = t.value;
+  } else if (t.dataset.f) {
+    v = typeof v === 'object' && v !== null ? v : {};
+    v[t.dataset.f] = t.value;
+  } else {
+    v = t.value;
+  }
+
+  st.a[key] = v;
+  
+  if (key === 'c0s1.nip' && tr(v).length >= 5) {
+    st.pid = tr(v);
+    syncUserData(tr(v));
+  }
+
+  mark(id, '💾 Tersimpan di perangkat');
+  save();
+  upd(id);
+}
+
+const mark = (id, m) => { const e = $('#sv-' + id); if (e) e.textContent = m; };
+
+function sub(id) {
+  const s = S.find(x => x.id === id);
+  const p = prof();
+  
+  if (!tr(p.nip)) {
+    showModal('Mohon isi terlebih dahulu NIP/NIK Anda di Bab Orientasi (c0s1) sebagai Kunci Unik Identitas.', 'Identitas Belum Lengkap');
+    location.hash = 'c0';
+    return;
+  }
+
+  st.pid = tr(p.nip);
+  const rows = s.f.map(f => [f.k, f.l || f.a || f.k, str(f, st.a[id + '.' + f.k])]).filter(r => tr(r[2]));
+  
+  if (!rows.length) {
+    mark(id, 'Belum ada isian untuk dikirim.');
+    return;
+  }
+
+  const pg = CH.map((_, i) => pc(i));
+  st.q = st.q.filter(j => j.sec !== id);
+  
+  const payload = {
+    sid: Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+    pid: st.pid,
+    nip: st.pid,
+    ...p,
+    sec: id,
+    secTitle: s.t,
+    ch: s.ch,
+    rows,
+    prog: pg,
+    total: pAll(),
+    tries: 0
+  };
+
+  st.q.push(payload);
+  ls.set('kbc', JSON.stringify(st));
+
+  mark(id, '⏳ Menyiapkan pengiriman...');
+  prg();
+  flush();
+}
+
+let busy = false;
+async function flush() {
+  if (busy || !API || !st.q.length) return;
+  busy = true;
+
+  while (st.q.length) {
+    const j = st.q[0];
+    try {
+      const d = await fetchAPI(API, { method: 'POST', body: JSON.stringify(j) });
+      if (!d.ok) throw new Error(d.err || 'Gagal');
+
+      st.q.shift();
+      mark(j.sec, '✅ Terkirim ' + new Date().toLocaleTimeString('id-ID'));
+      
+      if (d.answers) {
+        st.a = { ...st.a, ...d.answers };
+      }
+
+      ls.set('kbc', JSON.stringify(st));
+      prg();
+    } catch (x) {
+      j.tries++;
+      mark(j.sec, '⚠️ Menunggu giliran kirim...');
+      ls.set('kbc', JSON.stringify(st));
+      if (j.tries > 8) break;
+      await new Promise(r => setTimeout(r, Math.min(60000, 1500 * Math.pow(2, j.tries)) * (0.5 + Math.random())));
+    }
+  }
+  busy = false;
+}
+
+window.addEventListener('online', flush);
+setInterval(flush, 30000);
+window.addEventListener('hashchange', route);
+
+nav();
+route();
+
+if (prof().nip) {
+  st.pid = prof().nip;
+  syncUserData(prof().nip);
+}
+flush();
+</script>
+</body>
+</html>
