@@ -3,763 +3,346 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Papan Sticky Notes - Diary Panca Cinta KbC</title>
+<title>Papan Sticky Notes - Diary Petualangan Panca Cinta KbC</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Baloo+2:wght@600;700;800&family=Gochi+Hand&display=swap" rel="stylesheet">
-<!-- FontAwesome Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Quicksand', 'sans-serif'],
-          title: ['Baloo 2', 'sans-serif'],
-          handwriting: ['Gochi Hand', 'cursive'],
-        },
-        colors: {
-          kbcGreen: '#0e9a4f',
-          kbcDarkGreen: '#165c4f',
-          kbcOrange: '#f58220',
-          kbcBg: '#f4f7f4',
-          cintaAllah: '#10b981',
-          cintaIlmu: '#0284c7',
-          cintaAlam: '#65a30d',
-          cintaSesama: '#ec4899',
-          cintaTanahAir: '#d97706',
-        }
-      }
-    }
-  }
+tailwind.config={theme:{extend:{fontFamily:{sans:['Quicksand','sans-serif'],title:['Baloo 2','sans-serif'],handwriting:['Gochi Hand','cursive']},colors:{kbcGreen:'#0e9a4f',kbcDarkGreen:'#165c4f',kbcOrange:'#f58220'}}}}
 </script>
 <style>
-  /* Custom Wood Board Texture Styling */
-  .corkboard {
-    background-color: #e5d3b3;
-    background-image: 
-      radial-gradient(rgba(0,0,0,0.08) 1px, transparent 0),
-      radial-gradient(rgba(0,0,0,0.05) 1px, transparent 0);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .wood-frame {
-    border: 12px solid #8c5a2b;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3), inset 0 0 10px rgba(0,0,0,0.5);
-  }
-
-  /* Sticky Note Animations and Effects */
-  .sticky-note {
-    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-  }
-  
-  .sticky-note:hover {
-    transform: scale(1.04) rotate(0deg) !important;
-    z-index: 30 !important;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Pin Visual Effect */
-  .pin {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 3px 5px rgba(0,0,0,0.3), inset -2px -2px 4px rgba(0,0,0,0.3);
-    z-index: 10;
-  }
-  .pin::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.8);
-  }
-
-  /* Subtle Tape Effect Alternative */
-  .tape {
-    width: 60px;
-    height: 18px;
-    background: rgba(255, 255, 255, 0.6);
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    border-left: 1px dashed rgba(0,0,0,0.1);
-    border-right: 1px dashed rgba(0,0,0,0.1);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    z-index: 10;
-  }
-
-  /* Custom Scrollbar for Notes Container */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
-  }
+.corkboard{background-color:#e5d3b3;background-image:radial-gradient(rgba(0,0,0,.08) 1px,transparent 0),radial-gradient(rgba(0,0,0,.05) 1px,transparent 0);background-size:20px 20px;background-position:0 0,10px 10px;box-shadow:inset 0 0 40px rgba(0,0,0,.15)}
+.wood-frame{border:12px solid #8c5a2b;border-radius:18px;box-shadow:0 10px 25px -5px rgba(0,0,0,.3),inset 0 0 10px rgba(0,0,0,.5)}
+.sticky-note{transition:all .25s cubic-bezier(.175,.885,.32,1.275);position:relative}
+.sticky-note:hover{transform:scale(1.04) rotate(0deg)!important;z-index:30!important;box-shadow:0 20px 25px -5px rgba(0,0,0,.2)}
+.pin{width:14px;height:14px;border-radius:50%;position:absolute;top:8px;left:50%;transform:translateX(-50%);box-shadow:0 3px 5px rgba(0,0,0,.3),inset -2px -2px 4px rgba(0,0,0,.3);z-index:10}
+.pin::after{content:'';position:absolute;top:3px;left:3px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.8)}
+.secbar{background:rgba(255,255,255,.78);backdrop-filter:blur(4px);border-left:8px solid var(--c);border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.fresh::before{content:'BARU';position:absolute;top:-6px;right:-6px;background:#ef4444;color:#fff;font:800 9px 'Baloo 2';padding:1px 7px;border-radius:99px;z-index:20;box-shadow:0 2px 4px #0004}
+.clamp5{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:rgba(0,0,0,.25);border-radius:4px}
 </style>
 </head>
 <body class="bg-gray-100 min-h-screen text-gray-800 flex flex-col font-sans">
 
-<header class="bg-kbcDarkGreen text-white sticky top-0 z-50 shadow-md">
+<header class="bg-kbcDarkGreen text-white sticky top-0 z-40 shadow-md">
   <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
     <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
-      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center p-1 shadow-inner">
-        <svg viewBox="0 0 40 40" class="w-full h-full">
-          <circle cx="20" cy="20" r="20" fill="#fff"/>
-          <path d="M20 33V19" stroke="#0e9a4f" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M20 21C20 13 13 10 8 11c0 7 5 11 12 10z" fill="#0e9a4f"/>
-          <path d="M20 18c0-6 6-9 11-8 0 6-5 10-11 8z" fill="#f58220"/>
-        </svg>
-      </div>
+      <div class="w-10 h-10 bg-white rounded-full p-1"><svg viewBox="0 0 40 40" class="w-full h-full"><circle cx="20" cy="20" r="20" fill="#fff"/><path d="M20 33V19" stroke="#0e9a4f" stroke-width="3.5" stroke-linecap="round"/><path d="M20 21C20 13 13 10 8 11c0 7 5 11 12 10z" fill="#0e9a4f"/><path d="M20 18c0-6 6-9 11-8 0 6-5 10-11 8z" fill="#f58220"/></svg></div>
       <div>
-        <h1 class="font-title text-xl font-bold leading-none tracking-wide text-white">
-          Papan Sticky Notes KbC
-        </h1>
-        <p class="text-xs text-green-200">Dashboard Isian Peserta Diary Petualangan Panca Cinta</p>
+        <h1 class="font-title text-xl font-bold leading-none">Papan Sticky Notes KbC</h1>
+        <p class="text-xs text-green-200">Isian peserta Diary Petualangan Panca Cinta, per bagian</p>
       </div>
     </div>
-
-    <!-- Quick Action Controls -->
     <div class="flex items-center gap-2 flex-wrap">
-      <button onclick="openApiModal()" class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
-        <i class="fa-solid fa-plug"></i> <span id="apiStatusText">Atur Web App / Apps Script</span>
-      </button>
-      <button onclick="generateMockData()" class="bg-kbcOrange hover:bg-orange-600 text-white text-xs font-semibold px-3 py-2 rounded-lg flex items-center gap-1.5 transition shadow">
-        <i class="fa-solid fa-dice"></i> Simulasi Data Peserta
-      </button>
-      <button onclick="exportDataJSON()" class="bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
-        <i class="fa-solid fa-download"></i> Ekspor Data
-      </button>
+      <span id="liveDot" class="text-[11px] font-bold bg-white/10 px-3 py-2 rounded-lg"><i class="fa-solid fa-circle text-gray-400 mr-1"></i><span id="apiStatusText">Menyambung...</span></span>
+      <button onclick="load(true)" class="bg-white/10 hover:bg-white/20 text-xs font-semibold px-3 py-2 rounded-lg"><i class="fa-solid fa-rotate"></i> Muat Ulang</button>
+      <button onclick="openApiModal()" class="bg-emerald-700 hover:bg-emerald-600 text-xs font-semibold px-3 py-2 rounded-lg"><i class="fa-solid fa-plug"></i> Web App</button>
+      <button onclick="demo()" class="bg-kbcOrange hover:bg-orange-600 text-xs font-semibold px-3 py-2 rounded-lg"><i class="fa-solid fa-dice"></i> Demo</button>
+      <button onclick="exportCSV()" class="bg-white/10 hover:bg-white/20 text-xs font-semibold px-3 py-2 rounded-lg"><i class="fa-solid fa-download"></i> Ekspor CSV</button>
     </div>
   </div>
 </header>
 
 <main class="flex-1 max-w-7xl w-full mx-auto p-4 flex flex-col gap-4">
-  
-  <!-- Stats & Filter Bar -->
-  <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col md:flex-row gap-4 items-center justify-between">
-    <!-- Search & Filters -->
-    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto flex-1">
-      <!-- Search Input -->
-      <div class="relative min-w-[200px] flex-1 md:flex-initial">
+  <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col gap-3">
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="relative min-w-[200px] flex-1">
         <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-        <input type="text" id="searchInput" oninput="renderDashboard()" placeholder="Cari nama, instansi, atau isi sticky note..." class="w-full pl-9 pr-3 py-2 text-xs md:text-sm bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-kbcGreen focus:outline-none">
+        <input id="searchInput" oninput="render()" placeholder="Cari nama, instansi, bagian, atau isi catatan..." class="w-full pl-9 pr-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-kbcGreen focus:outline-none">
       </div>
-
-      <!-- Filter Section (Bab) -->
-      <select id="sectionFilter" onchange="renderDashboard()" class="py-2 px-3 text-xs md:text-sm bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-kbcGreen focus:outline-none font-semibold text-gray-700">
-        <option value="ALL">🌟 Semua Bab (0 - 5)</option>
-        <option value="0">🌱 Bab 0: Orientasi & Diary</option>
-        <option value="1">🍵 Bab 1: Cinta Allah & Rasul</option>
-        <option value="2">📖 Bab 2: Cinta Ilmu</option>
-        <option value="3">🌿 Bab 3: Cinta Alam</option>
-        <option value="4">💞 Bab 4: Cinta Diri & Sesama</option>
-        <option value="5">🏝️ Bab 5: Cinta Tanah Air</option>
+      <select id="sectionFilter" onchange="setBab(this.value)" class="py-2 px-3 text-sm bg-gray-50 border border-gray-300 rounded-xl font-semibold">
+        <option value="ALL">🌟 Semua Bab</option>
       </select>
-
-      <!-- Filter Kind (Jenis Isian) -->
-      <select id="kindFilter" onchange="renderDashboard()" class="py-2 px-3 text-xs md:text-sm bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-kbcGreen focus:outline-none font-semibold text-gray-700">
-        <option value="ALL">🏷️ Semua Jenis Isian</option>
-        <option value="D">🧭 Orientasi / Profil</option>
-        <option value="A">🌱 Aktivitas</option>
-        <option value="R">❓ Refleksi</option>
-        <option value="K">🔑 Konsep & Tafakkur</option>
-        <option value="P">✅ Aplikasi & Tantangan</option>
+      <select id="secFilter" onchange="render()" class="py-2 px-3 text-sm bg-gray-50 border border-gray-300 rounded-xl font-semibold max-w-[260px]"></select>
+      <select id="kindFilter" onchange="render()" class="py-2 px-3 text-sm bg-gray-50 border border-gray-300 rounded-xl font-semibold">
+        <option value="ALL">🏷️ Semua Jenis</option>
+        <option value="D">🧭 Orientasi</option><option value="A">🌱 Aktivitas</option><option value="R">❓ Refleksi</option><option value="K">🔑 Konsep & Tafakkur</option><option value="P">✅ Aplikasi & Tantangan</option>
       </select>
     </div>
-
-    <!-- Stats Count Badge -->
-    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-2 md:pt-0 border-gray-100">
-      <div class="text-right">
-        <span class="text-xs text-gray-500 font-semibold block">Total Sticky Notes</span>
-        <span id="noteCountBadge" class="text-lg font-bold font-title text-kbcDarkGreen">0 Pesan</span>
+    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+      <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 font-semibold">
+        <span><b id="noteCountBadge" class="font-title text-lg text-kbcDarkGreen">0</b> sticky note</span>
+        <span id="statInfo"></span>
       </div>
-      <div class="h-8 w-px bg-gray-200"></div>
-      <!-- View Mode Toggle -->
       <div class="flex bg-gray-100 p-1 rounded-xl">
-        <button id="viewGridBtn" onclick="switchView('grid')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-white shadow-sm text-kbcDarkGreen transition">
-          <i class="fa-solid fa-table-cells"></i> Papan Board
-        </button>
-        <button id="viewKanbanBtn" onclick="switchView('kanban')" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600 hover:text-kbcDarkGreen transition">
-          <i class="fa-solid fa-columns"></i> Kolom Bab
-        </button>
+        <button id="viewGridBtn" onclick="switchView('grid')" class="px-3 py-1.5 text-xs font-bold rounded-lg"><i class="fa-solid fa-table-cells"></i> Papan per Bagian</button>
+        <button id="viewKanbanBtn" onclick="switchView('kanban')" class="px-3 py-1.5 text-xs font-bold rounded-lg"><i class="fa-solid fa-columns"></i> Kolom Bab</button>
       </div>
     </div>
   </div>
 
-  <!-- Quick Bab Navigation Pills -->
-  <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none" id="babPillsNav">
-    <!-- JS populates bab buttons -->
-  </div>
+  <div class="flex items-center gap-2 overflow-x-auto pb-1" id="babPillsNav"></div>
 
-  <!-- Main Wood-Framed Corkboard Area -->
-  <div class="wood-frame corkboard p-4 md:p-6 min-h-[600px] flex flex-col relative overflow-hidden">
-    
-    <!-- Empty State -->
-    <div id="emptyState" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl border-2 border-dashed border-amber-800/30 my-auto">
-      <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-700 text-3xl mb-3 shadow">
-        <i class="fa-solid fa-note-sticky"></i>
-      </div>
-      <h3 class="font-title text-xl font-bold text-amber-900">Belum Ada Sticky Note Terpajang</h3>
-      <p class="text-sm text-amber-800/80 max-w-md mt-1">
-        Gunakan tombol <span class="font-bold text-kbcOrange">"Simulasi Data Peserta"</span> di atas atau sambungkan Google Apps Script untuk menampilkan kiriman peserta secara real-time.
-      </p>
-      <button onclick="generateMockData()" class="mt-4 bg-kbcOrange text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md hover:bg-orange-600 transition">
-        <i class="fa-solid fa-plus-circle mr-1"></i> Muat Contoh Sticky Notes
-      </button>
+  <div class="wood-frame corkboard p-4 md:p-6 min-h-[600px] flex flex-col">
+    <div id="emptyState" class="hidden flex-1 flex flex-col items-center justify-center text-center p-8 bg-white/60 rounded-2xl border-2 border-dashed border-amber-800/30 my-auto">
+      <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-700 text-3xl mb-3"><i class="fa-solid fa-note-sticky"></i></div>
+      <h3 id="emptyTitle" class="font-title text-xl font-bold text-amber-900">Belum Ada Sticky Note Terpajang</h3>
+      <p id="emptyMsg" class="text-sm text-amber-800/80 max-w-md mt-1">Catatan muncul otomatis begitu peserta menekan "Simpan &amp; Kirim" di Diary.</p>
     </div>
-
-    <!-- Grid View Mode Container -->
-    <div id="boardContainerGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start">
-      <!-- Sticky notes dynamically appended here -->
-    </div>
-
-    <!-- Kanban View Mode Container (Hidden by default) -->
-    <div id="boardContainerKanban" class="hidden flex gap-6 overflow-x-auto pb-4 items-start min-h-[500px]">
-      <!-- Kanban columns dynamically appended here -->
-    </div>
+    <div id="boardGrid" class="flex flex-col gap-8"></div>
+    <div id="boardKanban" class="hidden flex gap-6 overflow-x-auto pb-4 items-start"></div>
   </div>
 </main>
 
-<!-- Detailed View Modal for Sticky Note -->
-<div id="stickyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-  <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl relative border-4 border-amber-200 animate-fadeIn">
-    <button onclick="closeStickyModal()" class="absolute top-4 right-4 w-9 h-9 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-600 transition">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    
-    <div class="flex items-center gap-2 mb-3">
-      <span id="modalCategoryTag" class="text-xs font-extrabold px-3 py-1 rounded-full text-white bg-kbcGreen">
-        Bab 1 · Refleksi
-      </span>
-      <span id="modalKindTag" class="text-xs font-bold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-md">
-        ❓ REFLEKSI
-      </span>
+<div id="stickyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4" onclick="if(event.target===this)closeStickyModal()">
+  <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl relative border-4 border-amber-200 max-h-[90vh] flex flex-col">
+    <button onclick="closeStickyModal()" class="absolute top-4 right-4 w-9 h-9 bg-gray-100 hover:bg-gray-200 rounded-full"><i class="fa-solid fa-xmark"></i></button>
+    <div class="flex items-center gap-2 mb-3 pr-10 flex-wrap">
+      <span id="modalCategoryTag" class="text-xs font-extrabold px-3 py-1 rounded-full text-white"></span>
+      <span id="modalKindTag" class="text-xs font-bold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-md"></span>
     </div>
-
-    <h2 id="modalTitle" class="font-title text-xl font-bold text-gray-800 mb-2">
-      Judul Sub-Bab Isian
-    </h2>
-
-    <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80 mb-4 font-handwriting text-xl leading-relaxed text-gray-800 max-h-60 overflow-y-auto" id="modalContent">
-      <!-- Content -->
-    </div>
-
-    <!-- Participant Metadata Footer -->
+    <h2 id="modalTitle" class="font-title text-xl font-bold text-gray-800 mb-2"></h2>
+    <div id="modalContent" class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80 mb-4 overflow-y-auto space-y-3"></div>
     <div class="flex items-center justify-between pt-3 border-t border-gray-100 text-xs text-gray-500">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold font-title text-sm" id="modalAvatar">
-          A
-        </div>
-        <div>
-          <p id="modalAuthor" class="font-bold text-gray-800 text-sm">Nama Peserta</p>
-          <p id="modalInstansi" class="text-gray-500">Instansi / Sekolah</p>
-        </div>
+        <div id="modalAvatar" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold font-title"></div>
+        <div><p id="modalAuthor" class="font-bold text-gray-800 text-sm"></p><p id="modalInstansi"></p></div>
       </div>
-      <div class="text-right">
-        <span id="modalRole" class="inline-block bg-green-50 text-emerald-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-0.5">Guru</span>
-        <p id="modalTime" class="text-[10px] text-gray-400">10 Min lalu</p>
-      </div>
+      <div class="text-right"><span id="modalRole" class="inline-block bg-green-50 text-emerald-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase"></span><p id="modalTime" class="text-[10px] text-gray-400"></p></div>
     </div>
   </div>
 </div>
 
-<!-- API & Integration Setup Modal -->
-<div id="apiModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-  <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative border border-gray-200">
-    <button onclick="closeApiModal()" class="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-600 transition">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-
-    <div class="flex items-center gap-3 mb-4">
-      <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg font-bold">
-        <i class="fa-solid fa-code"></i>
-      </div>
-      <div>
-        <h3 class="font-title text-xl font-bold text-gray-800">Integrasi Web App & Google Apps Script</h3>
-        <p class="text-xs text-gray-500">Hubungkan dashboard ini langsung dengan Spreadsheet/Google Form diary-kbc</p>
-      </div>
-    </div>
-
-    <div class="space-y-4 text-xs md:text-sm">
-      <div>
-        <label class="block font-bold text-gray-700 mb-1">URL Web App Google Apps Script (Exec URL)</label>
-        <input type="url" id="apiUrlInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full p-2.5 text-xs bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-kbcGreen focus:outline-none">
-        <p class="text-[11px] text-gray-400 mt-1">Masukkan Web App Deployment URL yang telah dideploy dengan akses "Anyone / Siapa Saja".</p>
-      </div>
-
-      <div class="p-3 bg-slate-800 text-slate-200 rounded-xl font-mono text-[11px] overflow-x-auto relative">
-        <div class="flex justify-between items-center mb-1 pb-1 border-b border-slate-700">
-          <span class="text-emerald-400 font-bold">Kode Tambahan kode.gs (Google Apps Script)</span>
-          <button onclick="copyScriptCode()" class="text-[10px] bg-slate-700 hover:bg-slate-600 text-white px-2 py-0.5 rounded">
-            <i class="fa-solid fa-copy"></i> Salin Kode
-          </button>
-        </div>
-        <pre id="gsCodeSnippet">
-// Tambahkan fungsi doGet ini di kode.gs untuk mendukung Dashboard Sticky Notes:
-function doGet(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var rows = sheet.getDataRange().getValues();
-  var headers = rows[0];
-  var data = [];
-  
-  for (var i = 1; i < rows.length; i++) {
-    var row = rows[i];
-    var entry = {};
-    for (var j = 0; j < headers.length; j++) {
-      entry[headers[j]] = row[j];
-    }
-    data.push(entry);
-  }
-  
-  return ContentService.createTextOutput(JSON.stringify({ status: 'success', data: data }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-        </pre>
-      </div>
-    </div>
-
-    <div class="mt-6 flex justify-end gap-2">
-      <button onclick="saveApiConfig()" class="bg-kbcGreen hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow transition">
-        Simpan & Hubungkan
-      </button>
+<div id="apiModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl relative">
+    <button onclick="closeApiModal()" class="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full"><i class="fa-solid fa-xmark"></i></button>
+    <h3 class="font-title text-xl font-bold mb-1">Sambungan Web App</h3>
+    <p class="text-xs text-gray-500 mb-4">Bawaan: URL yang sama dengan Diary, sehingga papan ini membaca sheet <code>Detail_Respon</code> dan <code>Progres_Peserta</code> yang sama.</p>
+    <label class="block text-sm font-bold mb-1">URL Web App (Exec)</label>
+    <input type="url" id="apiUrlInput" class="w-full p-2.5 text-xs bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-kbcGreen focus:outline-none">
+    <p class="text-[11px] text-gray-500 mt-2">Penting: pakai <b>code.gs</b> versi terbaru (ada endpoint <code>act=notes</code>), lalu <i>Deploy → Manage deployments → Edit → New version</i>.</p>
+    <div class="mt-5 flex justify-end gap-2">
+      <button onclick="resetApi()" class="text-xs font-bold px-4 py-2.5 rounded-xl bg-gray-100">Kembali ke bawaan</button>
+      <button onclick="saveApiConfig()" class="bg-kbcGreen text-white font-bold text-xs px-5 py-2.5 rounded-xl">Simpan &amp; Hubungkan</button>
     </div>
   </div>
 </div>
 
 <script>
-// --- Chapter & Category Configuration mirroring diary-kbc.html ---
+// ===== Sinkron dengan diary_kbc.html & code.gs =====
+const DEFAULT_API = "https://script.google.com/macros/s/AKfycbx13_cdNLvjlpFJDz01BkVYFqa2famk6iBp-MaqYAEAuXIPi2Qv8EMwDZbo-PRzeuEE/exec";
+const POLL_MS = 45000, FULL_MS = 300000, CAP_GRID = 12, CAP_COL = 6;
+
 const CHAPTERS = [
-  { id: 0, name: 'Orientasi & Diary', short: 'Bab 0', color: '#f58220', bgPastel: '#fff3e0', border: '#f7c48a', pin: '#e65100', icon: '🌱' },
-  { id: 1, name: 'Cinta Allah & Rasul', short: 'Bab 1', color: '#0e9a4f', bgPastel: '#e8f5e9', border: '#a5d6a7', pin: '#2e7d32', icon: '🍵' },
-  { id: 2, name: 'Cinta Ilmu', short: 'Bab 2', color: '#2a8fc9', bgPastel: '#e1f5fe', border: '#90caf9', pin: '#0277bd', icon: '📖' },
-  { id: 3, name: 'Cinta Alam', short: 'Bab 3', color: '#5fa83a', bgPastel: '#f1f8e9', border: '#c5e1a5', pin: '#33691e', icon: '🌿' },
-  { id: 4, name: 'Cinta Diri & Sesama', short: 'Bab 4', color: '#d94f86', bgPastel: '#fce4ec', border: '#f48fb1', pin: '#c2185b', icon: '💞' },
-  { id: 5, name: 'Cinta Tanah Air', short: 'Bab 5', color: '#e08a1e', bgPastel: '#fff8e1', border: '#ffe082', pin: '#f57f17', icon: '🏝️' }
+  {id:0,name:'Orientasi & Diary',short:'Bab 0',color:'#f58220',bg:'#fff3e0',border:'#f7c48a',pin:'#e65100',icon:'🌱'},
+  {id:1,name:'Cinta Allah & Rasul',short:'Bab 1',color:'#0e9a4f',bg:'#e8f5e9',border:'#a5d6a7',pin:'#2e7d32',icon:'🍵'},
+  {id:2,name:'Cinta Ilmu',short:'Bab 2',color:'#2a8fc9',bg:'#e1f5fe',border:'#90caf9',pin:'#0277bd',icon:'📖'},
+  {id:3,name:'Cinta Alam',short:'Bab 3',color:'#5fa83a',bg:'#f1f8e9',border:'#c5e1a5',pin:'#33691e',icon:'🌿'},
+  {id:4,name:'Cinta Diri & Sesama',short:'Bab 4',color:'#d94f86',bg:'#fce4ec',border:'#f48fb1',pin:'#c2185b',icon:'💞'},
+  {id:5,name:'Cinta Tanah Air',short:'Bab 5',color:'#e08a1e',bg:'#fff8e1',border:'#ffe082',pin:'#f57f17',icon:'🏝️'}
 ];
-
 const KINDS = {
-  D: { label: 'DISCOVER / DIARY', icon: '🧭', badgeBg: 'bg-amber-100 text-amber-800' },
-  A: { label: 'AKTIVITAS', icon: '🌱', badgeBg: 'bg-emerald-100 text-emerald-800' },
-  R: { label: 'REFLEKSI', icon: '❓', badgeBg: 'bg-sky-100 text-sky-800' },
-  K: { label: 'KONSEP & TAFAKKUR', icon: '🔑', badgeBg: 'bg-purple-100 text-purple-800' },
-  P: { label: 'APLIKASI & TANTANGAN', icon: '✅', badgeBg: 'bg-orange-100 text-orange-800' }
+  D:{label:'DISCOVER / DIARY',icon:'🧭',cls:'bg-amber-100 text-amber-800'},
+  A:{label:'AKTIVITAS',icon:'🌱',cls:'bg-emerald-100 text-emerald-800'},
+  R:{label:'REFLEKSI',icon:'❓',cls:'bg-sky-100 text-sky-800'},
+  K:{label:'KONSEP & TAFAKKUR',icon:'🔑',cls:'bg-purple-100 text-purple-800'},
+  P:{label:'APLIKASI & TANTANGAN',icon:'✅',cls:'bg-orange-100 text-orange-800'}
+};
+// Jenis tiap lembar (id lembar = c{bab}s{no}, sama persis dengan diary_kbc.html)
+const SEC_KIND={c0s1:'D',c0s2:'D',c0s3:'D',c0s4:'D',c1s1:'A',c1s2:'R',c1s3:'K',c1s4:'K',c1s5:'K',c1s6:'K',c1s7:'K',c1s8:'P',c1s9:'P',c1s10:'P',c1s11:'P',c1s12:'P',c1s13:'P',c2s1:'A',c2s2:'R',c2s3:'K',c2s4:'K',c2s5:'K',c2s6:'K',c2s7:'P',c2s8:'P',c2s9:'P',c3s1:'A',c3s2:'R',c3s3:'K',c3s4:'K',c3s5:'K',c3s6:'K',c3s7:'K',c3s8:'K',c3s9:'P',c3s10:'P',c4s1:'A',c4s2:'R',c4s3:'K',c4s4:'K',c4s5:'K',c4s6:'P',c4s7:'A',c4s8:'R',c4s9:'K',c4s10:'K',c4s11:'K',c4s12:'K',c4s13:'P',c4s14:'A',c4s15:'R',c4s16:'K',c4s17:'K',c4s18:'P',c4s19:'A',c4s20:'R',c4s21:'K',c4s22:'P',c5s1:'A',c5s2:'R',c5s3:'K',c5s4:'K',c5s5:'K',c5s6:'P'};
+
+const state = {
+  rows:new Map(),      // kunci: u_sec_q  -> satu jawaban per kolom isian (baris Detail_Respon)
+  since:0, lastFull:0, view:'grid', bab:'ALL', demo:false, fresh:new Set(), open:new Set(), firstLoad:true,
+  apiUrl: localStorage.getItem('kbc_api_url') || DEFAULT_API, avg:null, nPeserta:null
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const secNo = id => (id.match(/^c(\d)s(\d+)$/) || [0,0,0]).slice(1).map(Number);
+const hash = s => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h); };
+const fmtT = t => new Date(t).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+
+window.onload = () => {
+  $('#sectionFilter').innerHTML += CHAPTERS.map(c => `<option value="${c.id}">${c.icon} ${c.short}: ${c.name}</option>`).join('');
+  $('#apiUrlInput').value = state.apiUrl;
+  switchView('grid'); renderPills(); load(true);
+  setInterval(() => { if (!document.hidden && !state.demo) load(Date.now() - state.lastFull > FULL_MS); }, POLL_MS);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && !state.demo) load(false); });
 };
 
-// Global Store State
-let state = {
-  notes: [],
-  currentView: 'grid', // 'grid' | 'kanban'
-  activeBabFilter: 'ALL',
-  apiUrl: localStorage.getItem('kbc_api_url') || ''
-};
-
-// --- Initial Launch ---
-window.onload = function() {
-  renderBabPills();
-  if (state.apiUrl) {
-    document.getElementById('apiUrlInput').value = state.apiUrl;
-    fetchLiveData();
-  } else {
-    // Generate initial rich mock dataset so user immediately sees sticky notes board
-    generateMockData();
-  }
-};
-
-// --- Mock Data Generator ---
-function generateMockData() {
-  const mockNames = [
-    { name: 'Ahmad Fauzi, S.Pd.', instansi: 'MAN 1 Jakarta', role: 'Guru' },
-    { name: 'Siti Rahmawati, M.Ag.', instansi: 'MTsN 2 Bandung', role: 'Kepala Madrasah' },
-    { name: 'Budi Santoso', instansi: 'Pesantren Al-Hikmah', role: 'Pengasuh Pesantren' },
-    { name: 'Dewi Lestari, S.Ag.', instansi: 'MIN 3 Surabaya', role: 'Guru' },
-    { name: 'H. Muhammad Ridwan', instansi: 'Pokjawas Kemenag', role: 'Pengawas' }
-  ];
-
-  const mockEntries = [
-    {
-      ch: 0, k: 'D',
-      title: 'Aksi Nyata Petani Cinta',
-      content: 'Sebagai Petani Cinta, saya bertekad menjadikan kelas bukan sekadar tempat mentransfer materi, tetapi persemaian benih karakter yang menyirami hati peserta didik dengan kasih dan keteladanan.'
-    },
-    {
-      ch: 1, k: 'A',
-      title: 'Merasakan Kehadiran Allah di Secangkir Teh',
-      content: 'Saat memegang teh hangat tanpa tergesa meminumnya, saya menyadari setiap usapan hangat dan rasa manis adalah rantai kasih Allah melalui petani teh, pembuat cangkir, hingga air rahmah-Nya.'
-    },
-    {
-      ch: 1, k: 'R',
-      title: 'Refleksi Secangkir Teh',
-      content: 'Aktivitas harian terasa biasa karena kita kehilangan kesadaran (mindfulness). Untuk menghadirkan Allah, kita perlu menyapa setiap nikmat dengan zikir dan rasa lapar akan ridho-Nya.'
-    },
-    {
-      ch: 1, k: 'P',
-      title: 'Ibadah Mode PECINTA',
-      content: 'Saya mulai mengubah ucapan niat shalat dari "kewajiban gugur" menjadi "Aku rindu bersimpuh di hadapan-Mu ya Allah". Rasanya dada menjadi sangat lapang dan tidak tergesa-gesa.'
-    },
-    {
-      ch: 2, k: 'A',
-      title: 'Kode Rahasia di Alam Semesta',
-      content: 'Melihat fraktal pada daun pakis dan urutan Fibonacci pada kelopak bunga matahari. Semuanya rapi membuktikan ciptaan Sang Maha Desainer yang Maha Indah.'
-    },
-    {
-      ch: 2, k: 'K',
-      title: 'Tadabbur QS Fussilat 53',
-      content: 'Ilmu bukan sekadar susunan huruf di kitab, tetapi cahaya yang membuka tabir keagungan Sang Pencipta baik di ufuk semesta maupun di dalam diri kita sendiri.'
-    },
-    {
-      ch: 3, k: 'A',
-      title: '54321 Mindful Walking',
-      content: 'Tanpa alas kaki di embun pagi: 5 helai daun embun, 4 cicit burung gereja, 3 tekstur kasar batang pohon, 2 aroma tanah basah, 1 rasa manis embun pagi. Luar biasa menenangkan!'
-    },
-    {
-      ch: 3, k: 'P',
-      title: 'Beres-beres Jurus 5S & Spark Joy',
-      content: 'Memilah 15 buku lama dan baju yang tidak dipakai untuk didonasikan. Ruang kerja jadi lega, pikiran pun menjadi lebih jernih dan produktif.'
-    },
-    {
-      ch: 4, k: 'R',
-      title: 'Refleksi Roller Coaster Emosi',
-      content: 'Emosi berubah cepat seperti cuaca. Saya belajar rumus P + R = O: Saat murid gaduh (Event), saya memilih bernapas tenang (Respon) agar suasana kelas tetap kondusif (Outcome).'
-    },
-    {
-      ch: 4, k: 'P',
-      title: 'Segitiga Restitusi Kasus Murid',
-      content: 'Menerapkan validasi tindakan pada murid yang terlambat. Alih-alih menghukum, kami merumuskan keyakinan kelas bersama. Murid justru tersadar dan berjanji memperbaiki diri.'
-    },
-    {
-      ch: 5, k: 'A',
-      title: 'Keindahan Allah dalam Tradisi',
-      content: 'Alunan gamelan dan sholawat badar saat muludan lokal membawa kedamaian mendalam. Seni lokal adalah wadah indah yang memuat muatan spiritual bernilai tinggi.'
-    },
-    {
-      ch: 5, k: 'P',
-      title: 'Tantangan Kearifan Lokal',
-      content: 'Menggalakkan kembali tradisi "Gotong Royong Reresik Madrasah" tiap Jumat. Menumbuhkan cinta lingkungan sekaligus persaudaraan antarsiswa.'
-    }
-  ];
-
-  const generated = [];
-  let idCounter = 1;
-
-  mockEntries.forEach(entry => {
-    const authorObj = mockNames[Math.floor(Math.random() * mockNames.length)];
-    // Random slight rotation for sticky notes look (-3 deg to +3 deg)
-    const rotate = (Math.random() * 6 - 3).toFixed(1);
-    
-    generated.push({
-      id: 'note_' + (idCounter++),
-      ch: entry.ch,
-      k: entry.k,
-      title: entry.title,
-      content: entry.content,
-      author: authorObj.name,
-      instansi: authorObj.instansi,
-      role: authorObj.role,
-      timestamp: new Date(Date.now() - Math.floor(Math.random() * 86400000 * 3)).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
-      rotation: rotate
-    });
-  });
-
-  state.notes = generated;
-  renderDashboard();
-}
-
-// --- Render Navigation Pills ---
-function renderBabPills() {
-  const container = document.getElementById('babPillsNav');
-  let html = `
-    <button onclick="setBabFilter('ALL')" class="px-3 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${state.activeBabFilter === 'ALL' ? 'bg-kbcDarkGreen text-white shadow' : 'bg-white text-gray-700 hover:bg-gray-100'}">
-      <span>🌟</span> Semua Bab
-    </button>
-  `;
-
-  CHAPTERS.forEach(ch => {
-    const isActive = state.activeBabFilter === ch.id;
-    html += `
-      <button onclick="setBabFilter(${ch.id})" class="px-3 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap shadow-sm border ${isActive ? 'ring-2 ring-offset-1 ring-kbcDarkGreen text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}" style="background-color: ${isActive ? ch.color : '#ffffff'}; border-color: ${ch.border}">
-        <span>${ch.icon}</span> ${ch.short}
-      </button>
-    `;
-  });
-
-  container.innerHTML = html;
-}
-
-function setBabFilter(babId) {
-  state.activeBabFilter = babId;
-  document.getElementById('sectionFilter').value = babId;
-  renderBabPills();
-  renderDashboard();
-}
-
-// --- Main Rendering Engine ---
-function renderDashboard() {
-  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-  const selectedBab = document.getElementById('sectionFilter').value;
-  const selectedKind = document.getElementById('kindFilter').value;
-
-  // Filter notes based on conditions
-  const filtered = state.notes.filter(note => {
-    const matchSearch = note.content.toLowerCase().includes(searchTerm) ||
-                        note.title.toLowerCase().includes(searchTerm) ||
-                        note.author.toLowerCase().includes(searchTerm) ||
-                        note.instansi.toLowerCase().includes(searchTerm);
-    
-    const matchBab = (selectedBab === 'ALL') || (note.ch == selectedBab);
-    const matchKind = (selectedKind === 'ALL') || (note.k === selectedKind);
-
-    return matchSearch && matchBab && matchKind;
-  });
-
-  // Update Notes Count Badge
-  document.getElementById('noteCountBadge').innerText = `${filtered.length} Sticky Note`;
-
-  const emptyState = document.getElementById('emptyState');
-  const gridContainer = document.getElementById('boardContainerGrid');
-  const kanbanContainer = document.getElementById('boardContainerKanban');
-
-  if (filtered.length === 0) {
-    emptyState.classList.remove('hidden');
-    gridContainer.innerHTML = '';
-    kanbanContainer.innerHTML = '';
-    return;
-  } else {
-    emptyState.classList.add('hidden');
-  }
-
-  if (state.currentView === 'grid') {
-    gridContainer.classList.remove('hidden');
-    kanbanContainer.classList.add('hidden');
-    renderGridView(filtered, gridContainer);
-  } else {
-    gridContainer.classList.add('hidden');
-    kanbanContainer.classList.remove('hidden');
-    renderKanbanView(filtered, kanbanContainer);
-  }
-}
-
-function renderGridView(notes, container) {
-  container.innerHTML = notes.map(note => createStickyNoteHTML(note)).join('');
-}
-
-function renderKanbanView(notes, container) {
-  let kanbanHTML = '';
-
-  CHAPTERS.forEach(ch => {
-    const chNotes = notes.filter(n => n.ch === ch.id);
-    kanbanHTML += `
-      <div class="w-80 flex-shrink-0 bg-white/70 backdrop-blur-md rounded-2xl p-4 border border-amber-900/10 shadow-sm flex flex-col max-h-[600px]">
-        <div class="flex items-center justify-between pb-3 mb-3 border-b border-gray-200">
-          <div class="flex items-center gap-2">
-            <span class="text-xl">${ch.icon}</span>
-            <h4 class="font-title font-bold text-gray-800 text-sm">${ch.short}: ${ch.name}</h4>
-          </div>
-          <span class="text-xs font-bold px-2 py-0.5 rounded-full text-white" style="background-color: ${ch.color}">
-            ${chNotes.length}
-          </span>
-        </div>
-
-        <div class="flex-1 overflow-y-auto space-y-4 pr-1">
-          ${chNotes.length > 0 ? chNotes.map(note => createStickyNoteHTML(note, true)).join('') : '<p class="text-xs text-center text-gray-400 py-8 font-handwriting text-lg">Belum ada cataan...</p>'}
-        </div>
-      </div>
-    `;
-  });
-
-  container.innerHTML = kanbanHTML;
-}
-
-// Helper to generate a individual sticky note item
-function createStickyNoteHTML(note, isKanban = false) {
-  const chInfo = CHAPTERS.find(c => c.id === note.ch) || CHAPTERS[0];
-  const kindInfo = KINDS[note.k] || KINDS.R;
-
-  return `
-    <div onclick="openStickyModal('${note.id}')" 
-         class="sticky-note cursor-pointer p-4 rounded-xl shadow-md border flex flex-col justify-between min-h-[220px] ${isKanban ? 'w-full' : ''}" 
-         style="background-color: ${chInfo.bgPastel}; border-color: ${chInfo.border}; transform: rotate(${note.rotation || 0}deg);">
-      
-      <!-- Push Pin Graphic -->
-      <div class="pin" style="background-color: ${chInfo.pin};"></div>
-
-      <!-- Header Tag -->
-      <div>
-        <div class="flex items-center justify-between gap-1 mb-2 mt-1">
-          <span class="text-[10px] font-extrabold px-2 py-0.5 rounded text-white" style="background-color: ${chInfo.color}">
-            ${chInfo.short}
-          </span>
-          <span class="text-[10px] font-bold ${kindInfo.badgeBg} px-2 py-0.5 rounded flex items-center gap-1">
-            <span>${kindInfo.icon}</span> ${note.k}
-          </span>
-        </div>
-
-        <!-- Title -->
-        <h4 class="font-title font-bold text-gray-800 text-sm leading-snug line-clamp-1 mb-1">
-          ${escapeHTML(note.title)}
-        </h4>
-
-        <!-- Main Handwritten Note Text -->
-        <p class="font-handwriting text-gray-800 text-lg leading-snug line-clamp-4">
-          "${escapeHTML(note.content)}"
-        </p>
-      </div>
-
-      <!-- Note Author Footer -->
-      <div class="mt-4 pt-2 border-t border-black/5 flex items-center justify-between text-[11px] text-gray-600">
-        <div class="truncate max-w-[150px]">
-          <p class="font-bold truncate text-gray-800">${escapeHTML(note.author)}</p>
-          <p class="text-[10px] text-gray-500 truncate">${escapeHTML(note.instansi)}</p>
-        </div>
-        <span class="text-[9px] bg-white/60 px-1.5 py-0.5 rounded text-gray-500 font-semibold">
-          ${note.timestamp}
-        </span>
-      </div>
-    </div>
-  `;
-}
-
-// --- Modal Display Logic ---
-function openStickyModal(id) {
-  const note = state.notes.find(n => n.id === id);
-  if (!note) return;
-
-  const chInfo = CHAPTERS.find(c => c.id === note.ch) || CHAPTERS[0];
-  const kindInfo = KINDS[note.k] || KINDS.R;
-
-  document.getElementById('modalCategoryTag').innerText = `${chInfo.short} · ${chInfo.name}`;
-  document.getElementById('modalCategoryTag').style.backgroundColor = chInfo.color;
-  
-  document.getElementById('modalKindTag').innerText = `${kindInfo.icon} ${kindInfo.label}`;
-  document.getElementById('modalTitle').innerText = note.title;
-  document.getElementById('modalContent').innerText = `"${note.content}"`;
-  
-  document.getElementById('modalAuthor').innerText = note.author;
-  document.getElementById('modalInstansi').innerText = note.instansi;
-  document.getElementById('modalRole').innerText = note.role || 'Peserta';
-  document.getElementById('modalTime').innerText = note.timestamp;
-  document.getElementById('modalAvatar').innerText = (note.author || 'P').charAt(0).toUpperCase();
-
-  document.getElementById('stickyModal').classList.remove('hidden');
-}
-
-function closeStickyModal() {
-  document.getElementById('stickyModal').classList.add('hidden');
-}
-
-// --- View Switcher ---
-function switchView(mode) {
-  state.currentView = mode;
-  const gridBtn = document.getElementById('viewGridBtn');
-  const kanbanBtn = document.getElementById('viewKanbanBtn');
-
-  if (mode === 'grid') {
-    gridBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-white shadow-sm text-kbcDarkGreen transition";
-    kanbanBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600 hover:text-kbcDarkGreen transition";
-  } else {
-    kanbanBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-white shadow-sm text-kbcDarkGreen transition";
-    gridBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600 hover:text-kbcDarkGreen transition";
-  }
-
-  renderDashboard();
-}
-
-function resetFilters() {
-  document.getElementById('searchInput').value = '';
-  document.getElementById('sectionFilter').value = 'ALL';
-  document.getElementById('kindFilter').value = 'ALL';
-  setBabFilter('ALL');
-}
-
-async function fetchLiveData() {
-  if (!state.apiUrl) return;
-  
+// ===== Ambil data: GET ?act=notes (inkremental lewat since) + ?act=dash (statistik) =====
+async function load(full) {
+  if (!state.apiUrl) return setStatus('Web App belum diatur', 'gray');
+  state.demo = false;
+  if (full) state.since = 0;
+  const sep = state.apiUrl.includes('?') ? '&' : '?';
   try {
-    document.getElementById('apiStatusText').innerText = "Menghubungkan...";
-    const res = await fetch(state.apiUrl);
-    const json = await res.json();
-
-    if (json.status === 'success' && Array.isArray(json.data)) {
-      // Map raw spreadsheet row data into formatted notes
-      state.notes = json.data.map((row, idx) => ({
-        id: 'live_' + idx,
-        ch: parseInt(row.Bab || row.ch || 0),
-        k: row.Jenis || row.k || 'D',
-        title: row.Judul || row.title || 'Isian Participant',
-        content: row.Isi || row.content || '',
-        author: row.Nama || row.nama || 'Anonim',
-        instansi: row.Instansi || row.instansi || '-',
-        role: row.Peran || row.peran || 'Guru',
-        timestamp: row.Waktu || new Date().toLocaleDateString('id-ID'),
-        rotation: (Math.random() * 6 - 3).toFixed(1)
-      }));
-
-      document.getElementById('apiStatusText').innerText = "Terhubung Live";
-      renderDashboard();
-    }
-  } catch (err) {
-    console.warn("Gagal terhubung ke API Google Script:", err);
-    document.getElementById('apiStatusText').innerText = "Gagal Terhubung";
+    setStatus('Memuat...', 'amber');
+    const res = await (await fetch(`${state.apiUrl}${sep}act=notes&since=${state.since}`)).json();
+    if (!res || !Array.isArray(res.notes)) throw new Error('old');
+    if (full) { state.rows.clear(); state.lastFull = Date.now(); }
+    res.notes.forEach(n => {
+      const key = `${n.u}_${n.sec}_${n.q}`;
+      state.rows.set(key, n);
+      if (!state.firstLoad && !full) state.fresh.add(`${n.u}|${n.sec}`);
+    });
+    state.since = Math.max(state.since, res.now || 0);
+    state.firstLoad = false;
+    setStatus('Live · ' + new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}), 'emerald');
+    fetch(`${state.apiUrl}${sep}act=dash`).then(r => r.json()).then(d => { state.avg = d.avg; state.nPeserta = d.n; render(); }).catch(() => {});
+    if (res.notes.length || full) render();
+  } catch (e) {
+    setStatus(e.message === 'old' ? 'code.gs belum versi terbaru' : 'Gagal terhubung', 'red');
+    $('#emptyTitle').textContent = e.message === 'old' ? 'Backend belum diperbarui' : 'Gagal terhubung ke Web App';
+    $('#emptyMsg').textContent = e.message === 'old' ? 'Tempel code.gs terbaru lalu deploy sebagai versi baru agar endpoint act=notes tersedia.' : 'Periksa URL Web App & akses "Siapa saja", lalu klik Muat Ulang.';
+    if (!state.rows.size) render();
   }
 }
-
-// --- API Modal Setup & Export Helpers ---
-function openApiModal() {
-  document.getElementById('apiModal').classList.remove('hidden');
+function setStatus(t, c) {
+  $('#apiStatusText').textContent = t;
+  $('#liveDot i').className = `fa-solid fa-circle mr-1 text-${c === 'gray' ? 'gray-400' : c + '-400'}`;
 }
 
-function closeApiModal() {
-  document.getElementById('apiModal').classList.add('hidden');
+// ===== Susun baris jawaban -> sticky note (1 peserta x 1 bagian) =====
+function buildNotes() {
+  const map = new Map();
+  for (const r of state.rows.values()) {
+    const k = `${r.u}|${r.sec}`;
+    let n = map.get(k);
+    if (!n) map.set(k, n = {id:k, u:r.u, sec:r.sec, ch:r.ch, st:r.st, nama:r.nama, instansi:r.instansi, peran:r.peran, k:SEC_KIND[r.sec] || 'R', items:[], t:0});
+    n.items.push({q:r.q, ql:r.ql, a:r.a});
+    if (r.t > n.t) n.t = r.t;
+  }
+  return [...map.values()];
+}
+function filteredNotes() {
+  const term = $('#searchInput').value.toLowerCase().trim();
+  const bab = $('#sectionFilter').value, sec = $('#secFilter').value, kind = $('#kindFilter').value;
+  return buildNotes().filter(n =>
+    (bab === 'ALL' || n.ch == bab) && (sec === 'ALL' || n.sec === sec) && (kind === 'ALL' || n.k === kind) &&
+    (!term || [n.nama, n.instansi, n.st, ...n.items.map(i => i.a)].join(' ').toLowerCase().includes(term))
+  );
+}
+function fillSecFilter(all) {
+  const bab = $('#sectionFilter').value, cur = $('#secFilter').value, seen = new Map();
+  all.filter(n => bab === 'ALL' || n.ch == bab).forEach(n => seen.set(n.sec, n.st));
+  const list = [...seen].sort((a, b) => { const x = secNo(a[0]), y = secNo(b[0]); return x[0] - y[0] || x[1] - y[1]; });
+  $('#secFilter').innerHTML = '<option value="ALL">📑 Semua Bagian</option>' + list.map(([id, t]) => `<option value="${id}">${esc(t)}</option>`).join('');
+  $('#secFilter').value = seen.has(cur) ? cur : 'ALL';
 }
 
+// ===== Render =====
+function render() {
+  const all = buildNotes();
+  fillSecFilter(all);
+  const notes = filteredNotes();
+  $('#noteCountBadge').textContent = notes.length;
+  const peserta = new Set(all.map(n => n.u)).size;
+  $('#statInfo').innerHTML = `<i class="fa-solid fa-users"></i> ${state.nPeserta ?? peserta} peserta` + (state.avg != null ? ` · <i class="fa-solid fa-chart-line"></i> rata-rata progres ${state.avg}%` : '');
+  const grid = $('#boardGrid'), kan = $('#boardKanban');
+  $('#emptyState').classList.toggle('hidden', notes.length > 0);
+  if (!notes.length) { grid.innerHTML = ''; kan.innerHTML = ''; return; }
+  grid.classList.toggle('hidden', state.view !== 'grid');
+  kan.classList.toggle('hidden', state.view !== 'kanban');
+  if (state.view === 'grid') { grid.innerHTML = CHAPTERS.map(c => chapterBlock(c, notes.filter(n => n.ch === c.id))).join(''); kan.innerHTML = ''; }
+  else { kan.innerHTML = CHAPTERS.map(kanCol.bind(null, notes)).join(''); grid.innerHTML = ''; }
+}
+function bySection(list) {
+  const m = new Map();
+  list.forEach(n => (m.get(n.sec) || m.set(n.sec, []).get(n.sec)).push(n));
+  return [...m].sort((a, b) => { const x = secNo(a[0]), y = secNo(b[0]); return x[1] - y[1]; });
+}
+function chapterBlock(c, list) {
+  if (!list.length) return '';
+  return `<section>
+    <h2 class="font-title text-2xl font-extrabold text-amber-950/90 mb-3 flex items-center gap-2"><span>${c.icon}</span>${c.short}: ${c.name}<span class="text-xs text-white px-2 py-0.5 rounded-full" style="background:${c.color}">${list.length}</span></h2>
+    <div class="flex flex-col gap-6">${bySection(list).map(([id, ns]) => secBlock(c, id, ns, CAP_GRID, false)).join('')}</div></section>`;
+}
+function kanCol(all, c) {
+  const list = all.filter(n => n.ch === c.id);
+  return `<div class="w-80 flex-shrink-0 bg-white/70 rounded-2xl p-4 border border-amber-900/10 flex flex-col max-h-[720px]">
+    <div class="flex items-center justify-between pb-3 mb-3 border-b border-gray-200"><h4 class="font-title font-bold text-sm">${c.icon} ${c.short}: ${c.name}</h4>
+    <span class="text-xs font-bold px-2 py-0.5 rounded-full text-white" style="background:${c.color}">${list.length}</span></div>
+    <div class="flex-1 overflow-y-auto space-y-5 pr-1">${list.length ? bySection(list).map(([id, ns]) => secBlock(c, id, ns, CAP_COL, true)).join('') : '<p class="text-center text-gray-400 py-8 font-handwriting text-lg">Belum ada catatan...</p>'}</div></div>`;
+}
+function secBlock(c, id, ns, cap, col) {
+  ns.sort((a, b) => b.t - a.t);
+  const kd = KINDS[ns[0].k] || KINDS.R, open = state.open.has(id + col), shown = open ? ns : ns.slice(0, cap);
+  return `<div>
+    <div class="secbar px-3 py-2 mb-3 flex items-center justify-between gap-2" style="--c:${c.color}">
+      <div class="min-w-0"><span class="text-[10px] font-bold ${kd.cls} px-2 py-0.5 rounded mr-1">${kd.icon} ${kd.label}</span>
+      <h3 class="font-title font-bold text-gray-800 ${col ? 'text-sm' : 'text-base'} leading-snug inline">${esc(ns[0].st)}</h3></div>
+      <span class="text-xs font-bold text-gray-600 whitespace-nowrap">${ns.length} catatan</span></div>
+    <div class="${col ? 'space-y-4' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start'}">${shown.map(n => noteHTML(n, c)).join('')}</div>
+    ${ns.length > cap ? `<button onclick="toggleOpen('${id}${col}')" class="mt-3 text-xs font-bold bg-white/80 hover:bg-white px-3 py-1.5 rounded-full shadow">${open ? 'Ringkas' : 'Tampilkan semua ' + ns.length}</button>` : ''}</div>`;
+}
+function noteHTML(n, c) {
+  const rot = (hash(n.id) % 7) - 3, fresh = state.fresh.has(n.id) ? ' fresh' : '';
+  const prev = n.items.map(i => i.a).join(' · ').replace(/\s+/g, ' ');
+  return `<div onclick="openStickyModal('${esc(n.id)}')" class="sticky-note${fresh} cursor-pointer p-4 pt-6 rounded-xl shadow-md border flex flex-col justify-between min-h-[190px]" style="background:${c.bg};border-color:${c.border};transform:rotate(${rot}deg)">
+    <div class="pin" style="background:${c.pin}"></div>
+    <p class="font-handwriting text-gray-800 text-lg leading-snug clamp5">${esc(prev)}</p>
+    <div class="mt-3 pt-2 border-t border-black/5 flex items-center justify-between gap-2 text-[11px] text-gray-600">
+      <div class="min-w-0"><p class="font-bold truncate text-gray-800">${esc(n.nama)}</p><p class="text-[10px] truncate">${esc(n.instansi)}</p></div>
+      <span class="text-[9px] bg-white/70 px-1.5 py-0.5 rounded font-semibold whitespace-nowrap">${n.items.length} isian · ${fmtT(n.t)}</span></div></div>`;
+}
+function toggleOpen(k) { state.open.has(k) ? state.open.delete(k) : state.open.add(k); render(); }
+
+// ===== Modal detail: semua pertanyaan & jawaban pada bagian itu =====
+function openStickyModal(id) {
+  const n = buildNotes().find(x => x.id === id); if (!n) return;
+  const c = CHAPTERS[n.ch] || CHAPTERS[0], kd = KINDS[n.k] || KINDS.R;
+  state.fresh.delete(id);
+  $('#modalCategoryTag').textContent = `${c.short} · ${c.name}`; $('#modalCategoryTag').style.background = c.color;
+  $('#modalKindTag').textContent = `${kd.icon} ${kd.label}`;
+  $('#modalTitle').textContent = n.st;
+  $('#modalContent').innerHTML = n.items.map(i => `<div><p class="text-[11px] font-bold text-amber-900/70 font-sans">${esc(i.ql)}</p><p class="font-handwriting text-xl leading-relaxed whitespace-pre-line text-gray-800">${esc(i.a)}</p></div>`).join('');
+  $('#modalAuthor').textContent = n.nama; $('#modalInstansi').textContent = n.instansi;
+  $('#modalRole').textContent = n.peran || 'Peserta'; $('#modalTime').textContent = fmtT(n.t);
+  $('#modalAvatar').textContent = (n.nama || 'P')[0].toUpperCase();
+  $('#stickyModal').classList.replace('hidden', 'flex');
+}
+function closeStickyModal() { $('#stickyModal').classList.replace('flex', 'hidden'); render(); }
+
+// ===== Navigasi & kontrol =====
+function renderPills() {
+  const on = 'ring-2 ring-offset-1 ring-kbcDarkGreen text-white';
+  $('#babPillsNav').innerHTML = `<button onclick="setBab('ALL')" class="px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm ${state.bab === 'ALL' ? 'bg-kbcDarkGreen text-white' : 'bg-white text-gray-700'}">🌟 Semua Bab</button>` +
+    CHAPTERS.map(c => `<button onclick="setBab(${c.id})" class="px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm border ${state.bab === c.id ? on : 'text-gray-700'}" style="background:${state.bab === c.id ? c.color : '#fff'};border-color:${c.border}">${c.icon} ${c.short}</button>`).join('');
+}
+function setBab(v) {
+  state.bab = v === 'ALL' ? 'ALL' : +v;
+  $('#sectionFilter').value = v; $('#secFilter').value = 'ALL';
+  renderPills(); render();
+}
+function switchView(m) {
+  state.view = m;
+  const on = 'px-3 py-1.5 text-xs font-bold rounded-lg bg-white shadow-sm text-kbcDarkGreen', off = 'px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600';
+  $('#viewGridBtn').className = m === 'grid' ? on : off; $('#viewKanbanBtn').className = m === 'kanban' ? on : off;
+  render();
+}
+function resetFilters() { $('#searchInput').value = ''; $('#kindFilter').value = 'ALL'; setBab('ALL'); }
+function openApiModal() { $('#apiModal').classList.replace('hidden', 'flex'); }
+function closeApiModal() { $('#apiModal').classList.replace('flex', 'hidden'); }
 function saveApiConfig() {
-  const url = document.getElementById('apiUrlInput').value.trim();
-  state.apiUrl = url;
-  localStorage.setItem('kbc_api_url', url);
-  closeApiModal();
-  if (url) fetchLiveData();
+  state.apiUrl = $('#apiUrlInput').value.trim(); localStorage.setItem('kbc_api_url', state.apiUrl);
+  closeApiModal(); state.rows.clear(); load(true);
+}
+function resetApi() { localStorage.removeItem('kbc_api_url'); state.apiUrl = DEFAULT_API; $('#apiUrlInput').value = DEFAULT_API; saveApiConfig(); }
+
+function exportCSV() {
+  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const head = ['Bab','Lembar_ID','Judul_Lembar','Nama','Instansi','Peran','Pertanyaan','Jawaban','Waktu'];
+  const body = [...state.rows.values()].map(r => [r.ch, r.sec, r.st, r.nama, r.instansi, r.peran, r.ql, r.a, new Date(r.t).toISOString()].map(q).join(','));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\ufeff' + [head.join(','), ...body].join('\n')], {type:'text/csv'}));
+  a.download = `sticky_notes_kbc_${new Date().toISOString().slice(0,10)}.csv`; a.click();
 }
 
-function copyScriptCode() {
-  const code = document.getElementById('gsCodeSnippet').innerText;
-  navigator.clipboard.writeText(code).then(() => {
-    alert("Kode Google Apps Script berhasil disalin ke clipboard!");
-  }).catch(() => {
-    document.execCommand('copy');
-  });
-}
-
-function exportDataJSON() {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state.notes, null, 2));
-  const downloadAnchor = document.createElement('a');
-  downloadAnchor.setAttribute("href", dataStr);
-  downloadAnchor.setAttribute("download", `sticky_notes_kbc_${new Date().toISOString().slice(0,10)}.json`);
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
-}
-
-function escapeHTML(str) {
-  return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// ===== Mode demo (tanpa backend), format baris sama dengan act=notes =====
+function demo() {
+  state.demo = true; state.rows.clear();
+  const people = [['Ahmad Fauzi, S.Pd.','MAN 1 Jakarta','Guru'],['Siti Rahmawati, M.Ag.','MTsN 2 Bandung','Kepala Madrasah'],['Budi Santoso','Pesantren Al-Hikmah','Pengasuh Pesantren'],['Dewi Lestari, S.Ag.','MIN 3 Surabaya','Guru']];
+  const secs = [['c0s4',0,'Formula Panca Cinta sebagai Jawaban','Aksi nyata yang akan saya lakukan sebagai Petani Cinta','Menjadikan kelas persemaian benih karakter yang disirami kasih dan keteladanan.'],
+    ['c1s1',1,'Merasakan Kehadiran Allah di Secangkir Teh','Catatan pengalaman dan kesan Anda','Hangat teh mengingatkan rantai kasih Allah dari petani hingga air rahmah-Nya.'],
+    ['c1s2',1,'Refleksi Secangkir Teh','1. Mengapa teh tadi terasa istimewa?','Karena saya hadir penuh dan tidak tergesa-gesa.'],
+    ['c3s1',3,'54321 — Mindful Walking','Catatan Pengindraan Mindful Walking','5 hal yang dilihat → daun berembun\n4 suara yang didengar → burung gereja'],
+    ['c4s6',4,'Merancang Kelas Bernuansa SEL','Kesepakatan / keyakinan kelas','Kami sepakat saling mendengar dan memperbaiki kesalahan bersama.'],
+    ['c5s6',5,'Tantangan Kearifan Lokal','Rencana aksi','Gotong royong reresik madrasah setiap Jumat bersama para siswa.']];
+  people.forEach((p, i) => secs.forEach((s, j) => { if ((i + j) % 3 === 2) return;
+    state.rows.set(`d${i}_${s[0]}_q`, {u:'d' + i, nip:'••••0000', nama:p[0], instansi:p[1], peran:p[2], ch:s[1], sec:s[0], st:s[2], q:'q', ql:s[3], a:s[4], t:Date.now() - (i * 7 + j) * 3600000}); }));
+  setStatus('Mode demo', 'amber'); state.avg = null; state.nPeserta = null; render();
 }
 </script>
 </body>
